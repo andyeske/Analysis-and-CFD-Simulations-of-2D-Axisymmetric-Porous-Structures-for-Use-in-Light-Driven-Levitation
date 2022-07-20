@@ -91,7 +91,8 @@ testing_Isun
 
 **Plots:** 
 
-![testing_Isun1](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/testing_Isun1.png) ![testing_Isun2](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/testing_Isun2.png) 
+<img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/testing_Isun1.png" width="600"> <img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/testing_Isun2.png" width="600">
+
 
 ---
 <a name="testing_L_A"></a>
@@ -232,8 +233,7 @@ new_param_sweep
 
 **Plots:** 
 
-<img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Sphere_Pay3.jpg" width="600">
-<img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Sphere_Pay4.jpg" width="600">
+<img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Sphere_Pay3.jpg" width="600"> <img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Sphere_Pay4.jpg" width="600">
 <img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Aereal_Sphere.jpg" width="600">
 
 ## Authors
