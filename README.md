@@ -75,11 +75,142 @@ testing_Isun
 
 **Plots:** 
 
-![testing_Isun1](https://github.com/andyeske/Analysis-and-CFD-Simulations-of-2D-Axisymmetric-Porous-Structures-for-Use-in-Light-Driven-Levitation/blob/main/Sample%20Plots/testing_Isun1.png) ![testing_Isun1](https://github.com/andyeske/Analysis-and-CFD-Simulations-of-2D-Axisymmetric-Porous-Structures-for-Use-in-Light-Driven-Levitation/blob/main/Sample%20Plots/testing_Isun2.png) 
+![testing_Isun1](https://github.com/andyeske/Analysis-and-CFD-Simulations-of-2D-Axisymmetric-Porous-Structures-for-Use-in-Light-Driven-Levitation/blob/main/Sample%20Plots/testing_Isun1.png) ![testing_Isun2](https://github.com/andyeske/Analysis-and-CFD-Simulations-of-2D-Axisymmetric-Porous-Structures-for-Use-in-Light-Driven-Levitation/blob/main/Sample%20Plots/testing_Isun2.png) 
+
+---
+```
+testing_L_A
+```
+
+**Type:** Script
+
+**Description:** The purpose of this script is to calculate the dependency of the maximum flow-through velocity as a function of L, the channel thickness, and A, the channel width
+
+**Inputs:** The user has to specify:
+
+* geom_param(1) - option, geometry chosen (2, 3 or 4)
+* geom_param(2) - Ra, characteristic radius(in m)
+* geom_param(3) - Outlet radius l (in m)
+* geom_param(4) - N, the number of suns
+* chan_param(6) – t, ALD thickness (in m)
+* altitude – Altitude Vector (in km)
+
+   The user has to also narrow the optimization range, which is set as a logarithmic spacing. This is given by <br />
+
+   L_vec = logspace(log10(1x10^-6),log10(10^-2),100) - for channel thickness L <br />
+   A_vec = logspace(log10(1x10^-8),log10(500x10^-5),100) - for channel width A <br />
+
+   As can be seen, the code will go through a double for loop. However, notice that this code assumes that B = 10A and S = A. <br />
+
+**Outputs:** Right now, the code has no specific outputs, although it can very easily be modified to return back the combination of A and L that yielded the max net lift, max force, or max vft
+
+**Plots:** 
+
+---
+```
+testing_t_A
+```
+
+**Type:** Script
+
+**Description:** The purpose of this script is to calculate the dependency of the maximum flow-through velocity as a function of t, the ALD thickness, and A, the channel width
+
+**Inputs:** The user has to specify:
+
+* geom_param(1) - option, geometry chosen (2, 3 or 4)
+* geom_param(2) - Ra, characteristic radius(in m)
+* geom_param(3) - Outlet radius l (in m)
+* geom_param(4) - N, the number of suns
+* chan_param(3) – L, the cannel thickness (in m)
+* altitude – Altitude Vector (in km)
+
+   The user has to also narrow the optimization range, which is set as a logarithmic spacing. This is given by <br />
+
+   vec_t = logspace(log10(1*10^-9),log10(100*10^-9),1000) – for ALD thickness t <br />
+   vec_A = logspace(log10(1*10^-7),log10(50*10^-5),1000) – for channel width A <br />
+
+   As can be seen, the code will go through a double for loop. Notice that the code assumes that B = 10A and S = A. <br />
+
+**Outputs:** Right now, the code has no specific outputs, although it can very easily be modified to return back the combination of A and t that yielded the max net lift, max force, or max vft
+
+**Plots:** 
+
+---
+```
+testing_L
+```
+
+**Type:** Script
+
+**Description:** The purpose of this script is to calculate the dependency of the maximum flow-through velocity as a function of L, the channel thickness
+
+**Inputs:** The user has to specify:
+
+* geom_param(1) - option, geometry chosen (2, 3 or 4)
+* geom_param(2) - Ra, characteristic radius(in m)
+* geom_param(3) - Outlet radius l (in m)
+* geom_param(4) - N, the number of suns
+* chan_param(1) – A, channel width (in m)
+* chan_param(2) – B, channel length (in m)
+* chan_param(5) – S, channel spacing (in m)
+* chan_param(6) – t, ALD thickness (in m)
+* altitude – Altitude Vector (in km)
+
+   The user has to also narrow the optimization range, which is set as a logarithmic spacing. This is given by
+
+   vec = (10x50x10^-9):(1x10^-8):(10^-2) - for channel thickness L
+
+   As can be seen, the code will go through a double for loop
+
+**Outputs:** Right now, the code has no specific outputs, although it can very easily be modified to return back the values of L that yielded the max net lift, max force, or max vft
+
+**Plots:** 
+
+---
+```
+new_param_sweep
+```
+
+**Type:** Script
+
+**Description:** The purpose of this script is to calculate the dependency of the maximum flow-through velocity as a function of L, the channel thickness, A, the channel width, and l, a geometrical parameter controlling Ain
+
+**Inputs:** The user has to specify:
+
+* geom_param(1) - option, geometry chosen (2, 3 or 4)
+* geom_param(2) - Ra, characteristic radius(in m)
+* geom_param(4) - N, the number of suns
+* chan_param(1) – A, channel width (in m)
+* chan_param(2) – B, channel length (in m)
+* chan_param(4) – X, number of channels (in m)
+* chan_param(6) – t, ALD thickness (in m)
+* altitude – Altitude Vector (in km)
+
+   The user has to also narrow the optimization range, which is set as a logarithmic spacing. This is given by A <br />
+
+   A_vector = logspace(log10(1*10^-8),log10(500*10^-5),50) – for channel width A A <br />
+   L = logspace(log10(1*10^-6),log10(10^-2)50) – for channel thickness L A <br />
+   ra = logspace(log10(10^-4),log10(10^-2),50) – for outlet radius l A <br />
+
+   As can be seen, the code will go through a double for loop. Notice that the code assumes that B = 10A and S = A. A <br />
+
+**Outputs:** The code returns as its main output the minimum altitude at which a positive payload was carried (alongside that payload) and the maximum payload carried (alongside the altitude at which that is possible). In both cases, the combination of A, L and l that was able to produce such structures is returned. For example:
+
+> -----------------------------------------------------------------------
+For the given constraints, the minimum altitude at which the net payload becomes positive is 30 km
+and has the potential of carrying 0.39045 mg as its maximum payload
+The corresponding parameters that yielded these results are A = 6.8878e-05 m, L = 1e-06 m, and Ra_{out} = 0.0082864 m
+-----------------------------------------------------------------------
+Additionally, the maximum payload found was 367.6971 mg
+and corresponded to an altitude of 70 km
+The corresponding parameters that yielded these results are A = 0.0010026 m, L = 2.9471e-05 m, and Ra_{out} = 0.01 m
+-----------------------------------------------------------------------
 
 
+**Plots:** 
 
 ## Authors
 
-Thomas Celenza, Andy Eskenazi and Igor Bargatin <br />
+Tom Celenza, Andy Eskenazi and Igor Bargatin <br />
+Department of Mechanical Engineering and Applied Mechanics <br />
 University of Pennsylvania, 2022 <br />
