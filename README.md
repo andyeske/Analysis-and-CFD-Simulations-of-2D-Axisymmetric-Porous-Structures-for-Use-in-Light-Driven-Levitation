@@ -12,7 +12,7 @@ calc_F
 
 **Description:** The purpose of this code is to provide a framework for calculating the flow-through velocity (vft) and outlet velocity (vout) of an arbitrary 3D geometry.
 
-**Inputs:** altitude,geom_param,chan_param
+**Inputs:** altitude, geom_param, chan_param
 
 * altitude: this is a vector containing the specific altitudes (in km) at which the vft will be calculated at (given that properties such as pressure, temperature and viscosity are altitude-dependent). An example vector would be 0:5:80 
 
@@ -30,7 +30,21 @@ calc_F
   * chan_param(5): S, channel spacing
   * chan_param(6): t, ALD thickness
 
+**Outputs:** net_lift, fit, vft, deltaP, deltaT, vft2, vft3
 
+* net_lift: this is the overall lift produced by the structure after accounting for its own weight
+
+* fit: this is the estimated total force produced by the structure, based-off from the computed vft and vout
+
+* vft: this is the computed flow-through velocity across the structure’s channels
+
+* deltaP: this is the computed pressure differential across the structure’s channels
+
+* deltaT: this is the computed temperature differential across the structure’s walls
+
+* vft2: this is the computed flow-through velocity using an approximation for the deltaT term and neglecting the deltaP term
+
+* vft3: this is the computed flow-through velocity neglecting the deltaP term but using the usual deltaT term
 
 
 
