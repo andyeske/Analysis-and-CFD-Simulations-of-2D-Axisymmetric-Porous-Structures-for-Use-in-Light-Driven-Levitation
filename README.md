@@ -12,11 +12,12 @@ The MATLAB code presented in this repository accompanies the paper titled "3D ph
 
 1. [ calc_F. ](#calc_F)
 2. [ testing_Isun. ](#testing_Isun)
-3  [ testing_L_A. ](#testing_L_A)
+3. [ testing_L_A. ](#testing_L_A)
 4. [ testing_t_A. ](#testing_t_A)
 5. [ testing_L. ](#testing_L)
 6. [ new_param_sweep. ](#new_param_sweep)
 
+---
 <a name="calc_F"></a>
 ```
 calc_F
