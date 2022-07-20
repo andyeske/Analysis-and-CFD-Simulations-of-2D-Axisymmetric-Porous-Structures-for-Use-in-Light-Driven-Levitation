@@ -47,11 +47,35 @@ calc_F
 * <ins>vft3:</ins> this is the computed flow-through velocity neglecting the deltaP term but using the usual deltaT term
 
 ---
-
 ```
-calc_F
+testing_Isun
 ```
 
+**Type:** Script
+
+**Description:** The purpose of this script is to calculate the dependency of the maximum flow-through velocity as a function of the sun intensity
+
+**Inputs:** The user has to specify:
+
+* geom_param(1) - option, geometry chosen (2, 3 or 4)
+* geom_param(2) - Ra, characteristic radius(in m)
+* geom_param(3) - Outlet radius l (in m)
+* chan_param(6) – t, ALD thickness (in m)
+* altitude – Altitude Vector (in km)
+
+...The user has to also narrow the optimization range, which is set as a logarithmic spacing. This is given by
+
+...L_vec = logspace(log10(1x10^-6),log10(10^-2),100) - for channel thickness L
+...A_vec = logspace(log10(1x10^-8),log10(500x10^-5),100) - for channel width A
+...I_vec = logspace(log10(1),log10(100),50) - for the number of suns N
+
+...As can be seen, the code will go through a triple for loop.
+
+**Outputs:** N/A
 
 
 
+## Authors
+
+Thomas Celenza, Andy Eskenazi and Igor Bargatin
+University of Pennsylvania, 2022
