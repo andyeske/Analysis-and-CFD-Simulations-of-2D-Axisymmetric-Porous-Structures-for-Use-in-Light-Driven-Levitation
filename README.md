@@ -126,8 +126,8 @@ testing_t_A
 
    The user has to also narrow the optimization range, which is set as a logarithmic spacing. This is given by <br />
 
-   vec_t = logspace(log10(1*10^-9),log10(100*10^-9),1000) – for ALD thickness t <br />
-   vec_A = logspace(log10(1*10^-7),log10(50*10^-5),1000) – for channel width A <br />
+   vec_t = logspace(log10(1x10^-9),log10(100x10^-9),1000) – for ALD thickness t <br />
+   vec_A = logspace(log10(1x10^-7),log10(50x10^-5),1000) – for channel width A <br />
 
    As can be seen, the code will go through a double for loop. Notice that the code assumes that B = 10A and S = A. <br />
 
@@ -188,8 +188,8 @@ new_param_sweep
 
    The user has to also narrow the optimization range, which is set as a logarithmic spacing. This is given by A <br />
 
-   A_vector = logspace(log10(1*10^-8),log10(500*10^-5),50) – for channel width A A <br />
-   L = logspace(log10(1*10^-6),log10(10^-2)50) – for channel thickness L A <br />
+   A_vector = logspace(log10(1x10^-8),log10(500x10^-5),50) – for channel width A A <br />
+   L = logspace(log10(1x10^-6),log10(10^-2)50) – for channel thickness L A <br />
    ra = logspace(log10(10^-4),log10(10^-2),50) – for outlet radius l A <br />
 
    As can be seen, the code will go through a double for loop. Notice that the code assumes that B = 10A and S = A. A <br />
@@ -197,14 +197,14 @@ new_param_sweep
 **Outputs:** The code returns as its main output the minimum altitude at which a positive payload was carried (alongside that payload) and the maximum payload carried (alongside the altitude at which that is possible). In both cases, the combination of A, L and l that was able to produce such structures is returned. For example:
 
 > -----------------------------------------------------------------------
-For the given constraints, the minimum altitude at which the net payload becomes positive is 30 km
-and has the potential of carrying 0.39045 mg as its maximum payload
-The corresponding parameters that yielded these results are A = 6.8878e-05 m, L = 1e-06 m, and Ra_{out} = 0.0082864 m
------------------------------------------------------------------------
-Additionally, the maximum payload found was 367.6971 mg
-and corresponded to an altitude of 70 km
-The corresponding parameters that yielded these results are A = 0.0010026 m, L = 2.9471e-05 m, and Ra_{out} = 0.01 m
------------------------------------------------------------------------
+> For the given constraints, the minimum altitude at which the net payload becomes positive is 30 km
+> and has the potential of carrying 0.39045 mg as its maximum payload
+> The corresponding parameters that yielded these results are A = 6.8878e-05 m, L = 1e-06 m, and Ra_{out} = 0.0082864 m
+> -----------------------------------------------------------------------
+> Additionally, the maximum payload found was 367.6971 mg
+> and corresponded to an altitude of 70 km
+> The corresponding parameters that yielded these results are A = 0.0010026 m, L = 2.9471e-05 m, and Ra_{out} = 0.01 m
+> -----------------------------------------------------------------------
 
 
 **Plots:** 
