@@ -91,7 +91,7 @@ testing_Isun
 
 **Plots:** 
 
-![testing_Isun1](https://github.com/andyeske/Analysis-and-CFD-Simulations-of-2D-Axisymmetric-Porous-Structures-for-Use-in-Light-Driven-Levitation/blob/main/Sample%20Plots/testing_Isun1.png) ![testing_Isun2](https://github.com/andyeske/Analysis-and-CFD-Simulations-of-2D-Axisymmetric-Porous-Structures-for-Use-in-Light-Driven-Levitation/blob/main/Sample%20Plots/testing_Isun2.png) 
+![testing_Isun1](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/testing_Isun1.png) ![testing_Isun2](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/testing_Isun2.png) 
 
 ---
 <a name="testing_L_A"></a>
@@ -122,6 +122,7 @@ testing_L_A
 **Outputs:** Right now, the code has no specific outputs, although it can very easily be modified to return back the combination of A and L that yielded the max net lift, max force, or max vft
 
 **Plots:** 
+![testing_L_A](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/testing_L_A.png) 
 
 ---
 <a name="testing_t_A"></a>
@@ -152,6 +153,7 @@ testing_t_A
 **Outputs:** Right now, the code has no specific outputs, although it can very easily be modified to return back the combination of A and t that yielded the max net lift, max force, or max vft
 
 **Plots:** 
+![testing_t_A](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/testing_t_A.png) 
 
 ---
 <a name="testing_L"></a>
@@ -184,6 +186,7 @@ testing_L
 **Outputs:** Right now, the code has no specific outputs, although it can very easily be modified to return back the values of L that yielded the max net lift, max force, or max vft
 
 **Plots:** 
+![testing_L](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/testing_L.png) 
 
 ---
 <a name="new_param_sweep"></a>
@@ -224,8 +227,8 @@ new_param_sweep
 > The corresponding parameters that yielded these results are A = 0.001019 m, L = 3.1257e-05 m, and Ra_{out} = 0.01 m <br />
 > Finally, the aerial density corresponding to this maximum payload capability was 120.7 g/m2 <br />
 
-
 **Plots:** 
+![Sphere_Pay3](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Sphere_Pay3.png) ![Sphere_Pay4](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Sphere_Pay4.png) ![Aereal_Sphere](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Aereal_Sphere.png) 
 
 ## Authors
 
