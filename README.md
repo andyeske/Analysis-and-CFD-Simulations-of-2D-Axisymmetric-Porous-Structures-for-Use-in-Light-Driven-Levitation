@@ -73,7 +73,9 @@ testing_Isun
 
 **Outputs:** N/A
 
-![testing_Isun1](https://github.com/andyeske/Analysis-and-CFD-Simulations-of-2D-Axisymmetric-Porous-Structures-for-Use-in-Light-Driven-Levitation/blob/main/Sample%20Plots/testing_Isun1.png)
+**Plots:** 
+
+![testing_Isun1](https://github.com/andyeske/Analysis-and-CFD-Simulations-of-2D-Axisymmetric-Porous-Structures-for-Use-in-Light-Driven-Levitation/blob/main/Sample%20Plots/testing_Isun1.png) ![testing_Isun1](https://github.com/andyeske/Analysis-and-CFD-Simulations-of-2D-Axisymmetric-Porous-Structures-for-Use-in-Light-Driven-Levitation/blob/main/Sample%20Plots/testing_Isun2.png) 
 
 
 
