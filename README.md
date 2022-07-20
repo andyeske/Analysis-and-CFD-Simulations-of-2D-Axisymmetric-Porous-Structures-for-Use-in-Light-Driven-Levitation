@@ -236,9 +236,9 @@ new_param_sweep
 **Plots:** 
 
 <p float="left">
-<img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Sphere_Pay3.jpg" width="350">
-<img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Sphere_Pay4.jpg" width="350">
-<img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Aereal_Sphere.jpg" width="350">
+<img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Sphere_Pay3.jpg" width="300">
+<img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Sphere_Pay4.jpg" width="300">
+<img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Aereal_Sphere.jpg" width="300">
 </p>
 
 
