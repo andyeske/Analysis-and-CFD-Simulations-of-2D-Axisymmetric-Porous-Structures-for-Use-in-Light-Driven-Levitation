@@ -1,6 +1,13 @@
-# Analysis and CFD Simulations of 2D Axisymmetric Porous Structures for Use in Light Driven Levitation
+# 3D photophoretic microflyers require ultrathin, ultralight porous materials
 
 In this repository, we present the various MATLAB functions and scripts utilized in our work, alongside an explanation of their use, inputs and outputs.
+
+## Summary
+
+The MATLAB code presented in this repository accompanies the paper titled "3D photophoretic microflyers require ultrathin, ultralight porous materials", a work that proposes that photophoretic microflyers would greatly benefit from a three-dimensional (3D) geometry that uses Knudsen pump to create a high-speed jet. This code is based on the theory developed on this paper's supplementary information section, and essentially seeks to find the optimal set of both geometrical and porous parameters that would return the highest payload capabilities for various types of 3D geometries, such as cones, spheres and rockets. This repository contains the code to calculate the lift forces produced by each geometry (calc_F), as well as several scripts that perform parametric studies where two or three of the main variables are modified.
+
+## Table of Content
+
 
 ## MATLAB Code
 
@@ -196,15 +203,13 @@ new_param_sweep
 
 **Outputs:** The code returns as its main output the minimum altitude at which a positive payload was carried (alongside that payload) and the maximum payload carried (alongside the altitude at which that is possible). In both cases, the combination of A, L and l that was able to produce such structures is returned. For example:
 
-> -----------------------------------------------------------------------
+
 > For the given constraints, the minimum altitude at which the net payload becomes positive is 30 km
-> and has the potential of carrying 0.39045 mg as its maximum payload
-> The corresponding parameters that yielded these results are A = 6.8878e-05 m, L = 1e-06 m, and Ra_{out} = 0.0082864 m
-> -----------------------------------------------------------------------
-> Additionally, the maximum payload found was 367.6971 mg
-> and corresponded to an altitude of 70 km
-> The corresponding parameters that yielded these results are A = 0.0010026 m, L = 2.9471e-05 m, and Ra_{out} = 0.01 m
-> -----------------------------------------------------------------------
+> and has the potential of carrying 0.65669 mg as its maximum payload
+> The corresponding parameters that yielded these results are A = 6.2996e-05 m, L = 1e-06 m, and Ra_{out} = 0.0079248 m
+> Additionally, the maximum payload found was 368.3004 mg and corresponded to an altitude of 70 km
+> The corresponding parameters that yielded these results are A = 0.001019 m, L = 3.1257e-05 m, and Ra_{out} = 0.01 m
+> Finally, the aerial density corresponding to this maximum payload capability was 120.7 g/m2
 
 
 **Plots:** 
