@@ -6,11 +6,18 @@ In this repository, we present the various MATLAB functions and scripts utilized
 
 The MATLAB code presented in this repository accompanies the paper titled "3D photophoretic microflyers require ultrathin, ultralight porous materials", a work that proposes that photophoretic microflyers would greatly benefit from a three-dimensional (3D) geometry that uses Knudsen pump to create a high-speed jet. This code is based on the theory developed on this paper's supplementary information section, and essentially seeks to find the optimal set of both geometrical and porous parameters that would return the highest payload capabilities for various types of 3D geometries, such as cones, spheres and rockets. This repository contains the code to calculate the lift forces produced by each geometry (calc_F), as well as several scripts that perform parametric studies where two or three of the main variables are modified.
 
-## Table of Content
-
-
 ## MATLAB Code
 
+### Table of Contents
+
+1. [ calc_F. ](#calc_F)
+2. [ testing_Isun. ](#testing_Isun)
+3  [ testing_L_A. ](#testing_L_A)
+4. [ testing_t_A. ](#testing_t_A)
+5. [ testing_L. ](#testing_L)
+6. [ new_param_sweep. ](#new_param_sweep)
+
+<a name="calc_F"></a>
 ```
 calc_F
 ```
@@ -54,6 +61,7 @@ calc_F
 * <ins>vft3:</ins> this is the computed flow-through velocity neglecting the deltaP term but using the usual deltaT term
 
 ---
+<a name="testing_Isun"></a>
 ```
 testing_Isun
 ```
@@ -85,6 +93,7 @@ testing_Isun
 ![testing_Isun1](https://github.com/andyeske/Analysis-and-CFD-Simulations-of-2D-Axisymmetric-Porous-Structures-for-Use-in-Light-Driven-Levitation/blob/main/Sample%20Plots/testing_Isun1.png) ![testing_Isun2](https://github.com/andyeske/Analysis-and-CFD-Simulations-of-2D-Axisymmetric-Porous-Structures-for-Use-in-Light-Driven-Levitation/blob/main/Sample%20Plots/testing_Isun2.png) 
 
 ---
+<a name="testing_L_A"></a>
 ```
 testing_L_A
 ```
@@ -114,6 +123,7 @@ testing_L_A
 **Plots:** 
 
 ---
+<a name="testing_t_A"></a>
 ```
 testing_t_A
 ```
@@ -143,6 +153,7 @@ testing_t_A
 **Plots:** 
 
 ---
+<a name="testing_L"></a>
 ```
 testing_L
 ```
@@ -174,6 +185,7 @@ testing_L
 **Plots:** 
 
 ---
+<a name="new_param_sweep"></a>
 ```
 new_param_sweep
 ```
