@@ -32,7 +32,7 @@ calc_F
 
 **Outputs:** net_lift, fit, vft, deltaP, deltaT, vft2, vft3
 
-* net_lift: this is the overall lift produced by the structure after accounting for its own weight
+* <net_lift:> this is the overall lift produced by the structure after accounting for its own weight
 
 * fit: this is the estimated total force produced by the structure, based-off from the computed vft and vout
 
