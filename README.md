@@ -217,12 +217,12 @@ new_param_sweep
 **Outputs:** The code returns as its main output the minimum altitude at which a positive payload was carried (alongside that payload) and the maximum payload carried (alongside the altitude at which that is possible). In both cases, the combination of A, L and l that was able to produce such structures is returned. For example:
 
 
-> For the given constraints, the minimum altitude at which the net payload becomes positive is 30 km
-> and has the potential of carrying 0.65669 mg as its maximum payload
-> The corresponding parameters that yielded these results are A = 6.2996e-05 m, L = 1e-06 m, and Ra_{out} = 0.0079248 m
-> Additionally, the maximum payload found was 368.3004 mg and corresponded to an altitude of 70 km
-> The corresponding parameters that yielded these results are A = 0.001019 m, L = 3.1257e-05 m, and Ra_{out} = 0.01 m
-> Finally, the aerial density corresponding to this maximum payload capability was 120.7 g/m2
+> For the given constraints, the minimum altitude at which the net payload becomes positive is 30 km <br />
+> and has the potential of carrying 0.65669 mg as its maximum payload <br />
+> The corresponding parameters that yielded these results are A = 6.2996e-05 m, L = 1e-06 m, and Ra_{out} = 0.0079248 m <br />
+> Additionally, the maximum payload found was 368.3004 mg and corresponded to an altitude of 70 km <br />
+> The corresponding parameters that yielded these results are A = 0.001019 m, L = 3.1257e-05 m, and Ra_{out} = 0.01 m <br />
+> Finally, the aerial density corresponding to this maximum payload capability was 120.7 g/m2 <br />
 
 
 **Plots:** 
