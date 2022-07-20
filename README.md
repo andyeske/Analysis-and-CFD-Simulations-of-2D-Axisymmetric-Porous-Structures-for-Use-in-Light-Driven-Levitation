@@ -5,7 +5,7 @@ In this repository, we present the various MATLAB functions and scripts utilized
 ## MATLAB Code
 
 | calf_F |
-| ------------- | ------------- |
+| ------------- |
 | **Type**  | Function  |
 | **Description**  | The purpose of this code is to provide a framework for calculating the flow-through velocity (vft) and outlet velocity (vout) of an arbitrary 3D geometry|
 | **Inputs**  | altitude,geom_param,chan_param |
