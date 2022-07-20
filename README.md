@@ -64,11 +64,12 @@ testing_Isun
 * altitude – Altitude Vector (in km)
  
    The user has to also narrow the optimization range, which is set as a logarithmic spacing. This is given by: <br />
+   
    L_vec = logspace(log10(1x10^-6),log10(10^-2),100) - for channel thickness L <br />
    A_vec = logspace(log10(1x10^-8),log10(500x10^-5),100) - for channel width A <br />
    I_vec = logspace(log10(1),log10(100),50) - for the number of suns N <br />
- 
- ⋅⋅⋅As can be seen, the code will go through a triple for loop.
+   
+   As can be seen, the code will go through a triple for loop.
 
 **Outputs:** N/A
 
