@@ -122,6 +122,7 @@ testing_L_A
 **Outputs:** Right now, the code has no specific outputs, although it can very easily be modified to return back the combination of A and L that yielded the max net lift, max force, or max vft
 
 **Plots:** 
+
 ![testing_L_A](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/testing_L_A.png) 
 
 ---
@@ -153,6 +154,7 @@ testing_t_A
 **Outputs:** Right now, the code has no specific outputs, although it can very easily be modified to return back the combination of A and t that yielded the max net lift, max force, or max vft
 
 **Plots:** 
+
 ![testing_t_A](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/testing_t_A.png) 
 
 ---
@@ -186,6 +188,7 @@ testing_L
 **Outputs:** Right now, the code has no specific outputs, although it can very easily be modified to return back the values of L that yielded the max net lift, max force, or max vft
 
 **Plots:** 
+
 ![testing_L](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/testing_L.png) 
 
 ---
@@ -228,7 +231,8 @@ new_param_sweep
 > Finally, the aerial density corresponding to this maximum payload capability was 120.7 g/m2 <br />
 
 **Plots:** 
-![Sphere_Pay3](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Sphere_Pay3.png) ![Sphere_Pay4](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Sphere_Pay4.png) ![Aereal_Sphere](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Aereal_Sphere.png) 
+
+![Sphere_Pay3](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Sphere_Pay3.jpg) ![Sphere_Pay4](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Sphere_Pay4.jpg) ![Aereal_Sphere](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Aereal_Sphere.jpg) 
 
 ## Authors
 
