@@ -232,8 +232,8 @@ new_param_sweep
 
 **Plots:** 
 
-![Sphere_Pay3](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Sphere_Pay3.jpg) ![Sphere_Pay4](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Sphere_Pay4.jpg) ![Aereal_Sphere](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Aereal_Sphere.jpg) 
-
+<img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Sphere_Pay3.jpg" width="600">
+<img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Sphere_Pay4.jpg" width="600">
 <img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Aereal_Sphere.jpg" width="600">
 
 ## Authors
