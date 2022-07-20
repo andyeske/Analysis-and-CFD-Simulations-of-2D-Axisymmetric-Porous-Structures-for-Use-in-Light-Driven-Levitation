@@ -63,13 +63,13 @@ testing_Isun
 * chan_param(6) – t, ALD thickness (in m)
 * altitude – Altitude Vector (in km)
 
-...The user has to also narrow the optimization range, which is set as a logarithmic spacing. This is given by
+... The user has to also narrow the optimization range, which is set as a logarithmic spacing. This is given by
 
-...L_vec = logspace(log10(1x10^-6),log10(10^-2),100) - for channel thickness L
-...A_vec = logspace(log10(1x10^-8),log10(500x10^-5),100) - for channel width A
-...I_vec = logspace(log10(1),log10(100),50) - for the number of suns N
+... L_vec = logspace(log10(1x10^-6),log10(10^-2),100) - for channel thickness L
+... A_vec = logspace(log10(1x10^-8),log10(500x10^-5),100) - for channel width A
+... I_vec = logspace(log10(1),log10(100),50) - for the number of suns N
 
-...As can be seen, the code will go through a triple for loop.
+... As can be seen, the code will go through a triple for loop.
 
 **Outputs:** N/A
 
