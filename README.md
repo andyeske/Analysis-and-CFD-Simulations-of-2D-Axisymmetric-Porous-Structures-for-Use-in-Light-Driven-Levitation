@@ -305,6 +305,7 @@ altitude, geom_param, chan_param
 **Outputs:** Right now, the code has no specific outputs, although it can very easily be modified to return back the values of altitude that yielded the max net lift, max force, or max vft
 
 **Plots:** 
+![plotting_forces](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/plotting_forces.png) 
 
 ## Authors
 
