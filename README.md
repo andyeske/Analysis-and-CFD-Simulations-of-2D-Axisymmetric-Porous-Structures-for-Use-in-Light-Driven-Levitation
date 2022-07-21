@@ -34,6 +34,7 @@ altitude, geom_param, chan_param
    ```
    0:5:80 
    ```
+   for an array of altitudes ranging from 0 to 80 km in multiples of 5.
 
 * <ins>geom_param:</ins> this is a vector containing important information regarding the geometrical properties of the 3D structure. This vector has length 4, with the first entry indicating the shape (2 – cone, 3 – sphere, 4 – rocket), the second entry the characteristic radius of the structure, the third entry the second characteristic length of the structure (such as the cone’s and rocket’s length or the outlet of the sphere), and then the fourth the number of suns the geometry will be subjected to. 
    ```
@@ -45,7 +46,8 @@ altitude, geom_param, chan_param
    An example vector would be 
    ```
    [3, 0.01, 0.005, 2]
-   ```for a sphere of radius 1cm, outlet radius 5mm and 2 suns intensity.
+   ```
+   for a sphere of radius 1cm, outlet radius 5mm and 2 suns intensity.
    
 
 * <ins>chan_param:</ins> this is a vector containing additional information regarding the channel properties of the 3D structure. This vector has length 6, with the first entry dictating the channel width A, the second the channel length B, the third the channel thickness L, the fourth the number of channels X, the fifth the channel spacing S, and lastly the sixth the ALD thickness t. 
@@ -60,11 +62,11 @@ altitude, geom_param, chan_param
    An example vector would be 
    ```
    [50x10^-6, 500x10^-6, 100x10^-6, 5, 50x10^-6, 50x10^-9]
-   ``` for a channel of width radius 50 microns, length 500 microns, thickness 100 microns, with 5 channels in total and spacing of 50 microns. 
+   ``` 
+   for a channel of width radius 50 microns, length 500 microns, thickness 100 microns, with 5 channels in total and spacing of 50 microns. 
    The ALD thickness in this case would be 50 nm.
    
   
-
 **Outputs:** 
    ```
    net_lift, fit, vft, deltaP, deltaT, vft2, vft3
@@ -86,9 +88,7 @@ altitude, geom_param, chan_param
 
 ---
 <a name="testing_Isun"></a>
-```
-testing_Isun
-```
+### testing_Isun
 
 **Type:** Script
 
@@ -96,28 +96,31 @@ testing_Isun
 
 **Inputs:** The user has to specify:
 
-* geom_param(1) - option, geometry chosen (2, 3 or 4)
-* geom_param(2) - Ra, characteristic radius(in m)
-* geom_param(3) - Outlet radius l (in m)
-* chan_param(6) – t, ALD thickness (in m)
-* altitude – Altitude Vector (in km)
+   ```
+   geom_param(1) - option, geometry chosen (2, 3 or 4)
+   geom_param(2) - Ra, characteristic radius(in m)
+   geom_param(3) - Outlet radius l (in m)
+   chan_param(6) – t, ALD thickness (in m)
+   altitude – Altitude Vector (in km)
+   ```
  
-   The user has to also narrow the optimization range, which is set as a logarithmic spacing. This is given by: <br />
-   
-   L_vec = logspace(log10(1x10^-6),log10(10^-2),100) - for channel thickness L <br />
-   A_vec = logspace(log10(1x10^-8),log10(500x10^-5),100) - for channel width A <br />
-   I_vec = logspace(log10(1),log10(100),50) - for the number of suns N <br />
-   
+   The user has to also narrow the optimization range, which is set as a logarithmic spacing. This is given by: 
+   ```
+   L_vec = logspace(log10(1x10^-6),log10(10^-2),100) - for channel thickness L 
+   A_vec = logspace(log10(1x10^-8),log10(500x10^-5),100) - for channel width A 
+   I_vec = logspace(log10(1),log10(100),50) - for the number of suns N 
+   ```
    As can be seen, the code will go through a triple for loop.
 
 **Outputs:** N/A
 
 **Plots:** 
-
+```
 <p float="left">
 <img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/testing_Isun1.png" width="400"> 
 <img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/testing_Isun2.png" width="400">
 </p>
+```
 
 ---
 <a name="testing_L_A"></a>
