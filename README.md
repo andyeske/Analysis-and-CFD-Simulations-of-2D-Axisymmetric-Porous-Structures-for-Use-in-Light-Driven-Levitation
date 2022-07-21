@@ -115,18 +115,14 @@ altitude, geom_param, chan_param
 **Outputs:** N/A
 
 **Plots:** 
-```
 <p float="left">
 <img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/testing_Isun1.png" width="400"> 
 <img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/testing_Isun2.png" width="400">
 </p>
-```
 
 ---
 <a name="testing_L_A"></a>
-```
-testing_L_A
-```
+### testing_L_A
 
 **Type:** Script
 
@@ -134,17 +130,20 @@ testing_L_A
 
 **Inputs:** The user has to specify:
 
-* geom_param(1) - option, geometry chosen (2, 3 or 4)
-* geom_param(2) - Ra, characteristic radius(in m)
-* geom_param(3) - Outlet radius l (in m)
-* geom_param(4) - N, the number of suns
-* chan_param(6) – t, ALD thickness (in m)
-* altitude – Altitude Vector (in km)
+   ```
+   geom_param(1) - option, geometry chosen (2, 3 or 4)
+   geom_param(2) - Ra, characteristic radius(in m)
+   geom_param(3) - Outlet radius l (in m)
+   geom_param(4) - N, the number of suns
+   chan_param(6) – t, ALD thickness (in m)
+   altitude – Altitude Vector (in km)
+   ```
 
-   The user has to also narrow the optimization range, which is set as a logarithmic spacing. This is given by <br />
-
-   L_vec = logspace(log10(1x10^-6),log10(10^-2),100) - for channel thickness L <br />
-   A_vec = logspace(log10(1x10^-8),log10(500x10^-5),100) - for channel width A <br />
+   The user has to also narrow the optimization range, which is set as a logarithmic spacing. This is given by 
+   ```
+   L_vec = logspace(log10(1x10^-6),log10(10^-2),100) - for channel thickness L 
+   A_vec = logspace(log10(1x10^-8),log10(500x10^-5),100) - for channel width A 
+   ```
 
    As can be seen, the code will go through a double for loop. However, notice that this code assumes that B = 10A and S = A. <br />
 
@@ -156,27 +155,28 @@ testing_L_A
 
 ---
 <a name="testing_t_A"></a>
-```
-testing_t_A
-```
+### testing_t_A
 
 **Type:** Script
 
 **Description:** The purpose of this script is to calculate the dependency of the maximum flow-through velocity as a function of t, the ALD thickness, and A, the channel width
 
 **Inputs:** The user has to specify:
+   
+   ```
+   geom_param(1) - option, geometry chosen (2, 3 or 4)
+   geom_param(2) - Ra, characteristic radius(in m)
+   geom_param(3) - Outlet radius l (in m)
+   geom_param(4) - N, the number of suns
+   chan_param(3) – L, the cannel thickness (in m)
+   altitude – Altitude Vector (in km)
+   ```
 
-* geom_param(1) - option, geometry chosen (2, 3 or 4)
-* geom_param(2) - Ra, characteristic radius(in m)
-* geom_param(3) - Outlet radius l (in m)
-* geom_param(4) - N, the number of suns
-* chan_param(3) – L, the cannel thickness (in m)
-* altitude – Altitude Vector (in km)
-
-   The user has to also narrow the optimization range, which is set as a logarithmic spacing. This is given by <br />
-
-   vec_t = logspace(log10(1x10^-9),log10(100x10^-9),1000) – for ALD thickness t <br />
-   vec_A = logspace(log10(1x10^-7),log10(50x10^-5),1000) – for channel width A <br />
+   The user has to also narrow the optimization range, which is set as a logarithmic spacing. This is given by 
+   ```
+   vec_t = logspace(log10(1x10^-9),log10(100x10^-9),1000) – for ALD thickness t 
+   vec_A = logspace(log10(1x10^-7),log10(50x10^-5),1000) – for channel width A 
+   ```
 
    As can be seen, the code will go through a double for loop. Notice that the code assumes that B = 10A and S = A. <br />
 
@@ -188,9 +188,7 @@ testing_t_A
 
 ---
 <a name="testing_L"></a>
-```
-testing_L
-```
+### testing_L
 
 **Type:** Script
 
@@ -198,19 +196,22 @@ testing_L
 
 **Inputs:** The user has to specify:
 
-* geom_param(1) - option, geometry chosen (2, 3 or 4)
-* geom_param(2) - Ra, characteristic radius(in m)
-* geom_param(3) - Outlet radius l (in m)
-* geom_param(4) - N, the number of suns
-* chan_param(1) – A, channel width (in m)
-* chan_param(2) – B, channel length (in m)
-* chan_param(5) – S, channel spacing (in m)
-* chan_param(6) – t, ALD thickness (in m)
-* altitude – Altitude Vector (in km)
+   ```
+   geom_param(1) - option, geometry chosen (2, 3 or 4)
+   geom_param(2) - Ra, characteristic radius(in m)
+   geom_param(3) - Outlet radius l (in m)
+   geom_param(4) - N, the number of suns
+   chan_param(1) – A, channel width (in m)
+   chan_param(2) – B, channel length (in m)
+   chan_param(5) – S, channel spacing (in m)
+   chan_param(6) – t, ALD thickness (in m)
+   altitude – Altitude Vector (in km)
+   ```
 
    The user has to also narrow the optimization range, which is set as a logarithmic spacing. This is given by
-
+   ```
    vec = (10x50x10^-9):(1x10^-8):(10^-2) - for channel thickness L
+   ```
 
    As can be seen, the code will go through a double for loop
 
@@ -222,42 +223,43 @@ testing_L
 
 ---
 <a name="new_param_sweep"></a>
-```
-new_param_sweep
-```
+### new_param_sweep
 
 **Type:** Script
 
 **Description:** The purpose of this script is to calculate the dependency of the maximum flow-through velocity as a function of L, the channel thickness, A, the channel width, and l, a geometrical parameter controlling Ain
 
 **Inputs:** The user has to specify:
+   
+   ```
+   geom_param(1) - option, geometry chosen (2, 3 or 4)
+   geom_param(2) - Ra, characteristic radius(in m)
+   geom_param(4) - N, the number of suns
+   chan_param(1) – A, channel width (in m)
+   chan_param(2) – B, channel length (in m)
+   chan_param(4) – X, number of channels (in m)
+   chan_param(6) – t, ALD thickness (in m)
+   altitude – Altitude Vector (in km)
+   ```
 
-* geom_param(1) - option, geometry chosen (2, 3 or 4)
-* geom_param(2) - Ra, characteristic radius(in m)
-* geom_param(4) - N, the number of suns
-* chan_param(1) – A, channel width (in m)
-* chan_param(2) – B, channel length (in m)
-* chan_param(4) – X, number of channels (in m)
-* chan_param(6) – t, ALD thickness (in m)
-* altitude – Altitude Vector (in km)
+   The user has to also narrow the optimization range, which is set as a logarithmic spacing. This is given by  
+   ```
+   A_vector = logspace(log10(1x10^-8),log10(500x10^-5),50) – for channel width A  
+   L = logspace(log10(1x10^-6),log10(10^-2)50) – for channel thickness L  
+   ra = logspace(log10(10^-4),log10(10^-2),50) – for outlet radius l 
+   ```
 
-   The user has to also narrow the optimization range, which is set as a logarithmic spacing. This is given by A <br />
-
-   A_vector = logspace(log10(1x10^-8),log10(500x10^-5),50) – for channel width A A <br />
-   L = logspace(log10(1x10^-6),log10(10^-2)50) – for channel thickness L A <br />
-   ra = logspace(log10(10^-4),log10(10^-2),50) – for outlet radius l A <br />
-
-   As can be seen, the code will go through a double for loop. Notice that the code assumes that B = 10A and S = A. A <br />
+   As can be seen, the code will go through a double for loop. Notice that the code assumes that B = 10A and S = A. 
 
 **Outputs:** The code returns as its main output the minimum altitude at which a positive payload was carried (alongside that payload) and the maximum payload carried (alongside the altitude at which that is possible). In both cases, the combination of A, L and l that was able to produce such structures is returned. For example:
 
 
-> For the given constraints, the minimum altitude at which the net payload becomes positive is 30 km <br />
-> and has the potential of carrying 0.65669 mg as its maximum payload <br />
-> The corresponding parameters that yielded these results are A = 6.2996e-05 m, L = 1e-06 m, and Ra_{out} = 0.0079248 m <br />
-> Additionally, the maximum payload found was 368.3004 mg and corresponded to an altitude of 70 km <br />
-> The corresponding parameters that yielded these results are A = 0.001019 m, L = 3.1257e-05 m, and Ra_{out} = 0.01 m <br />
-> Finally, the aerial density corresponding to this maximum payload capability was 120.7 g/m2 <br />
+> For the given constraints, the minimum altitude at which the net payload becomes positive is 30 km 
+> and has the potential of carrying 0.65669 mg as its maximum payload 
+> The corresponding parameters that yielded these results are A = 6.2996e-05 m, L = 1e-06 m, and Ra_{out} = 0.0079248 m 
+> Additionally, the maximum payload found was 368.3004 mg and corresponded to an altitude of 70 km 
+> The corresponding parameters that yielded these results are A = 0.001019 m, L = 3.1257e-05 m, and Ra_{out} = 0.01 m 
+> Finally, the aerial density corresponding to this maximum payload capability was 120.7 g/m2 
 
 **Plots:** 
 
