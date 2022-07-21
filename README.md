@@ -16,6 +16,7 @@ The MATLAB code presented in this repository accompanies the paper titled "3D ph
 4. [ testing_t_A ](#testing_t_A)
 5. [ testing_L ](#testing_L)
 6. [ new_param_sweep ](#new_param_sweep)
+7. [ plotting_forces ](#plotting_forces)
 
 ---
 <a name="calc_F"></a>
@@ -244,15 +245,25 @@ altitude, geom_param, chan_param
 
    The user has to also narrow the optimization range, which is set as a logarithmic spacing. This is given by  
    ```
-   A_vector = logspace(log10(1x10^-8),log10(500x10^-5),50) – for channel width A  
-   L = logspace(log10(1x10^-6),log10(10^-2)50) – for channel thickness L  
-   ra = logspace(log10(10^-4),log10(10^-2),50) – for outlet radius l 
+  min_A = 1*10^-8;
+  max_A = 500*10^-5;
+  num_A = 100; % number of points in the vector
+  A_vector = logspace(log10(min_A),log10(max_A),num_A);
+  
+  min_L = 1*10^-6;
+  max_L = 10^-2;
+  num_L = 100; % number of points in the vector
+  L = logspace(log10(min_L),log10(max_L),num_L);
+
+  min_ra = 10^-4;
+  max_ra = 10^-2;
+  num_ra = 100; % number of points in the vector
+  ra = logspace(log10(min_ra),log10(max_ra),num_ra);
    ```
 
    As can be seen, the code will go through a double for loop. Notice that the code assumes that B = 10A and S = A. 
 
 **Outputs:** The code returns as its main output the minimum altitude at which a positive payload was carried (alongside that payload) and the maximum payload carried (alongside the altitude at which that is possible). In both cases, the combination of A, L and l that was able to produce such structures is returned. For example:
-
 
 > For the given constraints, the minimum altitude at which the net payload becomes positive is 30 km 
 > and has the potential of carrying 0.65669 mg as its maximum payload 
@@ -269,6 +280,31 @@ altitude, geom_param, chan_param
 <img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Aereal_Sphere.jpg" width="300">
 </p>
 
+<a name="plotting_forces"></a>
+### plotting_forces
+
+**Type:** Script
+
+**Description:** The purpose of this script is to calculate the dependency of the maximum flow-through velocity as a function of L, the channel thickness, A, the channel width, and l, a geometrical parameter controlling Ain
+
+**Inputs:** The user has to specify:
+
+   ```
+   geom_param(1) - option, geometry chosen (2, 3 or 4)
+   geom_param(2) - Ra, characteristic radius(in m)
+   geom_param(3) - Outlet radius l (in m)
+   geom_param(4) - N, the number of suns
+   chan_param(1) – A, channel width (in m)
+   chan_param(2) – B, channel length (in m)
+   chan_param(3) – L, channel thickness (in m)
+   chan_param(5) – S, channel spacing (in m)
+   chan_param(6) – t, ALD thickness (in m)
+   altitude – Altitude Vector (in km)
+   ```
+
+**Outputs:** Right now, the code has no specific outputs, although it can very easily be modified to return back the values of altitude that yielded the max net lift, max force, or max vft
+
+**Plots:** 
 
 ## Authors
 
