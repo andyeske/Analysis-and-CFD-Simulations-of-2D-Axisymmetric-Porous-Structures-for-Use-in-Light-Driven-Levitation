@@ -30,9 +30,16 @@ The MATLAB code presented in this repository accompanies the paper titled "3D ph
 altitude, geom_param, chan_param
 ```
 
-* <ins>altitude:</ins> this is a vector containing the specific altitudes (in km) at which the vft will be calculated at (given that properties such as pressure, temperature and viscosity are altitude-dependent). An example vector would be 0:5:80 
+* <ins>altitude:</ins> this is a vector containing the specific altitudes (in km) at which the vft will be calculated at (given that properties such as pressure, temperature and viscosity are altitude-dependent). An example vector would be 
+   ```
+   0:5:80 
+   ```
 
-* <ins>geom_param:</ins> this is a vector containing important information regarding the geometrical properties of the 3D structure. This vector has length 4, with the first entry indicating the shape (2 – cone, 3 – sphere, 4 – rocket), the second entry the characteristic radius of the structure, the third entry the second characteristic length of the structure (such as the cone’s and rocket’s length or the outlet of the sphere), and then the fourth the number of suns the geometry will be subjected to. An example vector would be (3, 0.01, 0.005, 2), for a sphere of radius 1cm, outlet radius 5mm and 2 suns intensity.
+* <ins>geom_param:</ins> this is a vector containing important information regarding the geometrical properties of the 3D structure. This vector has length 4, with the first entry indicating the shape (2 – cone, 3 – sphere, 4 – rocket), the second entry the characteristic radius of the structure, the third entry the second characteristic length of the structure (such as the cone’s and rocket’s length or the outlet of the sphere), and then the fourth the number of suns the geometry will be subjected to. An example vector would be 
+   ```
+   [3, 0.01, 0.005, 2]
+   ```
+   for a sphere of radius 1cm, outlet radius 5mm and 2 suns intensity.
    ```
    geom_param(1): option, geometry chosen
    geom_param(2): Ra, characteristic radius
@@ -40,15 +47,26 @@ altitude, geom_param, chan_param
    geom_param(4): N, number of suns
    ```
 
-* <ins>chan_param:</ins> this is a vector containing additional information regarding the channel properties of the 3D structure. This vector has length 6, with the first entry dictating the channel width A, the second the channel length B, the third the channel thickness L, the fourth the number of channels X, the fifth the channel spacing S, and lastly the sixth the ALD thickness t. An example vector would be (50x10^-6, 500x10^-6, 100x10^-6, 5, 50x10^-6, 50x10^-9). 
-  * chan_param(1): A, channel width
-  * chan_param(2): B, channel length
-  * chan_param(3): L, channel thickness
-  * chan_param(4): X, number of channels in cell
-  * chan_param(5): S, channel spacing
-  * chan_param(6): t, ALD thickness
+* <ins>chan_param:</ins> this is a vector containing additional information regarding the channel properties of the 3D structure. This vector has length 6, with the first entry dictating the channel width A, the second the channel length B, the third the channel thickness L, the fourth the number of channels X, the fifth the channel spacing S, and lastly the sixth the ALD thickness t. An example vector would be 
+   ```
+   [50x10^-6, 500x10^-6, 100x10^-6, 5, 50x10^-6, 50x10^-9]
+   ```
+   for a channel of width radius 50 microns, length 500 microns, thickness 100 microns, with 5 channels in total and spacing of 50 microns. 
+   The ALD thickness in this case would be 50 nm.
+   
+   ```
+   chan_param(1): A, channel width
+   chan_param(2): B, channel length
+   chan_param(3): L, channel thickness
+   chan_param(4): X, number of channels in cell
+   chan_param(5): S, channel spacing
+   chan_param(6): t, ALD thickness
+   ```
 
-**Outputs:** net_lift, fit, vft, deltaP, deltaT, vft2, vft3
+**Outputs:** 
+   ```
+   net_lift, fit, vft, deltaP, deltaT, vft2, vft3
+   ```
 
 * <ins>net_lift:</ins> this is the overall lift produced by the structure after accounting for its own weight
 
