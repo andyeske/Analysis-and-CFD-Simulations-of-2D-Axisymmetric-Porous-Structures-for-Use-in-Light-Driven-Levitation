@@ -83,7 +83,8 @@ altitude, geom_param, chan_param
 * <ins>vft3:</ins> this is the computed flow-through velocity neglecting the deltaP term but using the usual deltaT term
 * <ins>aerial:</ins> this is the aerial densities that can be sustained by the structure's material at each altitude
 
-[ back to top ](#back_to_top)
+<p align="right">text</p>
+([ back to top ])(#back_to_top)
 
 ---
 <a name="testing_Isun"></a>
