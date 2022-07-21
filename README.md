@@ -83,8 +83,7 @@ altitude, geom_param, chan_param
 * <ins>vft3:</ins> this is the computed flow-through velocity neglecting the deltaP term but using the usual deltaT term
 * <ins>aerial:</ins> this is the aerial densities that can be sustained by the structure's material at each altitude
 
-<p align="right">text</p>
-([ back to top ])(#back_to_top)
+<p align="right"> [ (back to top) ](#back_to_top) </p>
 
 ---
 <a name="testing_Isun"></a>
@@ -120,6 +119,8 @@ altitude, geom_param, chan_param
 <img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/testing_Isun2.png" width="400">
 </p>
 
+<p align="right"> [ (back to top) ](#back_to_top) </p>
+
 ---
 <a name="testing_L_A"></a>
 ### testing_L_A
@@ -153,6 +154,8 @@ altitude, geom_param, chan_param
 
 ![testing_L_A](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/testing_L_A.png) 
 
+<p align="right"> [ (back to top) ](#back_to_top) </p>
+
 ---
 <a name="testing_t_A"></a>
 ### testing_t_A
@@ -185,6 +188,8 @@ altitude, geom_param, chan_param
 **Plots:** 
 
 ![testing_t_A](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/testing_t_A.png) 
+
+<p align="right"> [ (back to top) ](#back_to_top) </p>
 
 ---
 <a name="testing_L"></a>
@@ -220,6 +225,8 @@ altitude, geom_param, chan_param
 **Plots:** 
 
 ![testing_L](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/testing_L.png) 
+
+<p align="right"> [ (back to top) ](#back_to_top) </p>
 
 ---
 <a name="new_param_sweep"></a>
@@ -279,6 +286,8 @@ altitude, geom_param, chan_param
 <img src="https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/Aereal_Sphere.jpg" width="300">
 </p>
 
+<p align="right"> [ (back to top) ](#back_to_top) </p>
+
 ---
 <a name="plotting_forces"></a>
 ### plotting_forces
@@ -307,6 +316,8 @@ altitude, geom_param, chan_param
 **Plots:** 
 
 ![plotting_forces](https://github.com/andyeske/MATLAB-fluidflow-parametric-studies/blob/main/Sample%20Plots/plotting_forces.png) 
+
+<p align="right"> [ (back to top) ](#back_to_top) </p>
 
 ## Authors
 
