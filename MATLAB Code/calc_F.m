@@ -15,7 +15,7 @@ function [net_lift,fit,vft,deltaP,deltaT,vft2,vft3,aerial] = calc_F(altitude,geo
 % inlet radius)
 % (units of m)
 
-% h: length of cone (option 2), outlet radius of the sphere (option 3), or
+% q: length of cone (option 2), outlet radius of the sphere (option 3), or
 % length of the rocket (option 4)
 % (units of m)
 

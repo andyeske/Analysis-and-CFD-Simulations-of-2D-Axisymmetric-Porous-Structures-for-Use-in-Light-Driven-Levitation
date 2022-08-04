@@ -7,7 +7,8 @@
 % Establishing the main geometry and channel parameters of the structure
 geom_param(1) = 3; % option, geometry chosen
 geom_param(2) = 0.01; % Ra, characteristic radius
-geom_param(3) = 0.005; % q, outlet sphere radius or cone/rocket length
+geom_param(3) = 0.005; % q, length of cone (option 2), outlet radius of the 
+% sphere (option 3), or length of the rocket (option 4)
 geom_param(4) = 5; % N, the number of suns
 chan_param(6) = 50*10^-9; % ALD thickness, t
 t = chan_param(6); %t
