@@ -42,7 +42,7 @@ altitude, geom_param, chan_param
    ```
    geom_param(1): option, geometry chosen
    geom_param(2): Ra, characteristic radius
-   geom_param(3): l, length of cone (option 2), outlet radius of the sphere (option 3), or length of the rocket (option 4)
+   geom_param(3): q, length of cone (option 2), outlet radius of the sphere (option 3), or length of the rocket (option 4)
    geom_param(4): N, number of suns
    ```
    An example vector would be 
@@ -97,8 +97,8 @@ altitude, geom_param, chan_param
 
    ```
    geom_param(1) - option, geometry chosen (2, 3 or 4)
-   geom_param(2) - Ra, characteristic radius(in m)
-   geom_param(3) - Outlet radius l (in m)
+   geom_param(2) - Ra, characteristic radius (in m)
+   geom_param(3) - q, length of cone (option 2), outlet radius of the sphere (option 3), or length of the rocket (option 4) (in m)
    chan_param(6) – t, ALD thickness (in m)
    altitude – Altitude Vector (in km)
    ```
@@ -134,7 +134,7 @@ altitude, geom_param, chan_param
    ```
    geom_param(1) - option, geometry chosen (2, 3 or 4)
    geom_param(2) - Ra, characteristic radius(in m)
-   geom_param(3) - Outlet radius l (in m)
+   geom_param(3) - q, length of cone (option 2), outlet radius of the sphere (option 3), or length of the rocket (option 4) (in m)
    geom_param(4) - N, the number of suns
    chan_param(6) – t, ALD thickness (in m)
    altitude – Altitude Vector (in km)
@@ -169,7 +169,7 @@ altitude, geom_param, chan_param
    ```
    geom_param(1) - option, geometry chosen (2, 3 or 4)
    geom_param(2) - Ra, characteristic radius(in m)
-   geom_param(3) - Outlet radius l (in m)
+   geom_param(3) - q, length of cone (option 2), outlet radius of the sphere (option 3), or length of the rocket (option 4) (in m)
    geom_param(4) - N, the number of suns
    chan_param(3) – L, the cannel thickness (in m)
    altitude – Altitude Vector (in km)
@@ -204,7 +204,7 @@ altitude, geom_param, chan_param
    ```
    geom_param(1) - option, geometry chosen (2, 3 or 4)
    geom_param(2) - Ra, characteristic radius(in m)
-   geom_param(3) - Outlet radius l (in m)
+   geom_param(3) - q, length of cone (option 2), outlet radius of the sphere (option 3), or length of the rocket (option 4) (in m)
    geom_param(4) - N, the number of suns
    chan_param(1) – A, channel width (in m)
    chan_param(2) – B, channel length (in m)
@@ -234,7 +234,7 @@ altitude, geom_param, chan_param
 
 **Type:** Script
 
-**Description:** The purpose of this script is to calculate the dependency of the maximum flow-through velocity as a function of L, the channel thickness, A, the channel width, and l, a geometrical parameter controlling Ain
+**Description:** The purpose of this script is to calculate the dependency of the maximum flow-through velocity as a function of L, the channel thickness, A, the channel width, and q, a geometrical parameter controlling Ain
 
 **Inputs:** The user has to specify:
    
@@ -242,9 +242,6 @@ altitude, geom_param, chan_param
    geom_param(1) - option, geometry chosen (2, 3 or 4)
    geom_param(2) - Ra, characteristic radius(in m)
    geom_param(4) - N, the number of suns
-   chan_param(1) – A, channel width (in m)
-   chan_param(2) – B, channel length (in m)
-   chan_param(4) – X, number of channels (in m)
    chan_param(6) – t, ALD thickness (in m)
    altitude – Altitude Vector (in km)
    ```
@@ -261,21 +258,21 @@ altitude, geom_param, chan_param
   num_L = 100; % number of points in the vector
   L = logspace(log10(min_L),log10(max_L),num_L);
 
-  min_ra = 10^-4;
-  max_ra = 10^-2;
-  num_ra = 100; % number of points in the vector
-  ra = logspace(log10(min_ra),log10(max_ra),num_ra);
+  min_q = 10^-4;
+  max_q = 10^-2;
+  num_q = 100; % number of points in the vector
+  q = logspace(log10(min_q),log10(max_q),num_q);
    ```
 
    As can be seen, the code will go through a double for loop. Notice that the code assumes that B = 10A and S = A. 
 
-**Outputs:** The code returns as its main output the minimum altitude at which a positive payload was carried (alongside that payload) and the maximum payload carried (alongside the altitude at which that is possible). In both cases, the combination of A, L and l that was able to produce such structures is returned. For example:
+**Outputs:** The code returns as its main output the minimum altitude at which a positive payload was carried (alongside that payload) and the maximum payload carried (alongside the altitude at which that is possible). In both cases, the combination of A, L and q that was able to produce such structures is returned. For example:
 
 > For the given constraints, the minimum altitude at which the net payload becomes positive is 30 km 
 > and has the potential of carrying 0.65669 mg as its maximum payload 
-> The corresponding parameters that yielded these results are A = 6.2996e-05 m, L = 1e-06 m, and Ra_{out} = 0.0079248 m 
+> The corresponding parameters that yielded these results are A = 6.2996e-05 m, L = 1e-06 m, and q = 0.0079248 m 
 > Additionally, the maximum payload found was 368.3004 mg and corresponded to an altitude of 70 km 
-> The corresponding parameters that yielded these results are A = 0.001019 m, L = 3.1257e-05 m, and Ra_{out} = 0.01 m 
+> The corresponding parameters that yielded these results are A = 0.001019 m, L = 3.1257e-05 m, and q = 0.01 m 
 > Finally, the aerial density corresponding to this maximum payload capability was 120.7 g/m2 
 
 **Plots:** 
@@ -294,14 +291,14 @@ altitude, geom_param, chan_param
 
 **Type:** Script
 
-**Description:** The purpose of this script is to calculate the dependency of the maximum flow-through velocity as a function of L, the channel thickness, A, the channel width, and l, a geometrical parameter controlling Ain
+**Description:** The purpose of this script is to provide an easy plotting mechanism to understand the dependency of force, payload and vft with regards to altitude
 
 **Inputs:** The user has to specify:
 
    ```
    geom_param(1) - option, geometry chosen (2, 3 or 4)
    geom_param(2) - Ra, characteristic radius(in m)
-   geom_param(3) - Outlet radius l (in m)
+   geom_param(3) - q, length of cone (option 2), outlet radius of the sphere (option 3), or length of the rocket (option 4) (in m)
    geom_param(4) - N, the number of suns
    chan_param(1) – A, channel width (in m)
    chan_param(2) – B, channel length (in m)
