@@ -7,7 +7,7 @@
 % Establishing the main geometry and channel parameters of the structure
 geom_param(1) = 3; % option, geometry chosen
 geom_param(2) = 0.01; % Ra, characteristic radius
-geom_param(3) = 0.005; % Outlet radius
+geom_param(3) = 0.005; % q, outlet sphere radius or cone/rocket length
 geom_param(4) = 5; % N, the number of suns
 chan_param(3) = 50*10^-6; % L
 
@@ -15,8 +15,8 @@ chan_param(3) = 50*10^-6; % L
 altitude = 0;
 
 % Optimization range
-vec_t = logspace(log10(1*10^-9),log10(100*10^-9),1000);
-vec_A = logspace(log10(1*10^-7),log10(50*10^-5),1000);
+vec_t = logspace(log10(1*10^-9),log10(100*10^-9),100);
+vec_A = logspace(log10(1*10^-7),log10(50*10^-5),100);
 
 % Matrices to store results
 P_mat = zeros(length(vec_A),length(vec_t));

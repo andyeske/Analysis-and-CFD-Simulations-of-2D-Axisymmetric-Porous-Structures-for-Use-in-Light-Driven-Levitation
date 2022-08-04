@@ -15,7 +15,7 @@ function [net_lift,fit,vft,deltaP,deltaT,vft2,vft3,aerial] = calc_F(altitude,geo
 % inlet radius)
 % (units of m)
 
-% l: length of cone (option 2), outlet radius of the sphere (option 3), or
+% h: length of cone (option 2), outlet radius of the sphere (option 3), or
 % length of the rocket (option 4)
 % (units of m)
 
@@ -40,7 +40,7 @@ function [net_lift,fit,vft,deltaP,deltaT,vft2,vft3,aerial] = calc_F(altitude,geo
 
 option = geom_param(1); 
 Ra = geom_param(2); 
-l = geom_param(3); 
+q = geom_param(3); 
 A = chan_param(1);
 B = chan_param(2);
 L = chan_param(3);
@@ -146,21 +146,21 @@ if option == 1
     A_solid = 0.2;
 elseif option == 2
     % Cone geometry
-    h = sqrt((Ra/2)^2 + l^2);
-    h2 = sqrt(Ra^2 + (2*l)^2);
+    h = sqrt((Ra/2)^2 + q^2);
+    h2 = sqrt(Ra^2 + (2*q)^2);
     A_out = 3.14*(Ra/2)^2;% outlet area
     A_solid = 3.14*Ra^2 + 3.14*Ra*h2 - 3.14*(Ra/2)*h;
     A_in = phi*A_solid;
 elseif option == 3
     % Sphere geometry
-    h = Ra - sqrt(Ra^2 - l^2); % sphere cap height
-    A_out = 3.14*l^2; % outlet area
+    h = Ra - sqrt(Ra^2 - q^2); % sphere cap height
+    A_out = 3.14*q^2; % outlet area
     A_solid = 4*3.14*Ra^2 - 2*Ra*h*3.14; %inlet area
     A_in = phi*A_solid;
 else
     % Rocket geometry
     A_out = 3.14*Ra^2; % outlet area
-    A_solid = 2*3.14*Ra^2 + 2*3.14*Ra*l;
+    A_solid = 2*3.14*Ra^2 + 2*3.14*Ra*q;
     A_in = phi*A_solid;
 end
 % ----------------------------------------------------------------------- %
