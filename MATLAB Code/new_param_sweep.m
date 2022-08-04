@@ -21,7 +21,7 @@
 % Establishing the altitude vector
 altitude = 0:5:80;
 
-geom_param(1) = 3; % Geometry option
+geom_param(1) = 4; % Geometry option
 geom_param(2) = 0.01; % Geometry characteristic radius
 geom_param(4) = 1; % N, the number of suns
 chan_param(6) = 50*10^-9; %t, ALD thickness
@@ -36,19 +36,19 @@ chan_param(6) = 50*10^-9; %t, ALD thickness
 % We are only modifying A, and setting B to always be 10 times A
 min_A = 1*10^-8;
 max_A = 500*10^-5;
-num_A = 50; % number of points in the vector
+num_A = 100; % number of points in the vector
 A_vector = logspace(log10(min_A),log10(max_A),num_A);
 
 % Channel Thickness L
 min_L = 1*10^-6;
 max_L = 10^-2;
-num_L = 50; % number of points in the vector
+num_L = 100; % number of points in the vector
 L = logspace(log10(min_L),log10(max_L),num_L);
 
 % Variable r
-min_q = 10^-4;
-max_q = 10^-2;
-num_q = 50; % number of points in the vector
+min_q = 10^-2;
+max_q = 10^-1;
+num_q = 100; % number of points in the vector
 q = logspace(log10(min_q),log10(max_q),num_q);
 
 % Creating the matrices that will store all of the solutions
@@ -67,22 +67,22 @@ maximum_payload_aerial = zeros(num_A,num_L,num_q);
 % Next, we will create a triple for-loop, where we will iterate for each
 % one of these parameter combinations, and calculate the force and payload
 % capabilities for each
-for qq = 1:num_L
-    for q = 1:num_A
-        for qqq = 1:num_q
+for zz = 1:num_L
+    for z = 1:num_A
+        for zzz = 1:num_q
 
             % Fixing the magnitude of the channel width A
-            chan_param(1) = A_vector(q);
+            chan_param(1) = A_vector(z);
             % We obtain the channel length B by multiplying A by 10
-            chan_param(2) = 10*A_vector(q);
+            chan_param(2) = 10*A_vector(z);
             % We set S = A
-            chan_param(5) = A_vector(q);
+            chan_param(5) = A_vector(z);
             % We write the channel thickness L
-            chan_param(3) = L(qq);
+            chan_param(3) = L(zz);
             % Number of channels in a unit cell
             chan_param(4) = ceil((10*chan_param(1)-chan_param(5))/(chan_param(1)+chan_param(5))); 
             % Outlet radius
-            geom_param(3) = q(qqq);
+            geom_param(3) = q(zzz);
            
             % If statement that ensures we have at least 1 channel in the
             % cell
@@ -105,31 +105,31 @@ for qq = 1:num_L
                     pos_payload_alt = altitude(net_lift > 0);
                     % In the matrix, we only store the first of these
                     % positive payloads
-                    minimum_altitude_payload(q,qq,qqq) = positive_payload(1);
+                    minimum_altitude_payload(z,zz,zzz) = positive_payload(1);
                     % Together with the corresponding payload
-                    minimum_altitude(q,qq,qqq) = pos_payload_alt(1);
+                    minimum_altitude(z,zz,zzz) = pos_payload_alt(1);
                     % Now, we can find the maximum payload and its 
                     % corresponding altitude
-                    maximum_payload(q,qq,qqq) = net_lift(net_lift == max(net_lift));
-                    maximum_payload_altitude(q,qq,qqq) = altitude(net_lift == max(net_lift));
-                    maximum_payload_aerial(q,qq,qqq) = aerial(net_lift == max(net_lift));
+                    maximum_payload(z,zz,zzz) = net_lift(net_lift == max(net_lift));
+                    maximum_payload_altitude(z,zz,zzz) = altitude(net_lift == max(net_lift));
+                    maximum_payload_aerial(z,zz,zzz) = aerial(net_lift == max(net_lift));
                 else
                     % Otherwise, if the returned vector with the
                     % net-payloads has no single positive value to begin
                     % with, then we just set set values of the matrices to
                     % be trivial
-                    minimum_altitude_payload(q,qq,qqq) = 0;
-                    minimum_altitude(q,qq,qqq) = 100;
-                    maximum_payload(q,qq,qqq) = 0;
-                    maximum_payload_altitude(q,qq,qqq) = 100;
-                    maximum_payload_aerial(q,qq,qqq) = 0;
+                    minimum_altitude_payload(z,zz,zzz) = 0;
+                    minimum_altitude(z,zz,zzz) = 100;
+                    maximum_payload(z,zz,zzz) = 0;
+                    maximum_payload_altitude(z,zz,zzz) = 100;
+                    maximum_payload_aerial(z,zz,zzz) = 0;
                 end
             else
-                minimum_altitude_payload(q,qq,qqq) = 0;
-                minimum_altitude(q,qq,qqq) = 100;
-                maximum_payload(q,qq,qqq) = 0;
-                maximum_payload_altitude(q,qq,qqq) = 100;
-                maximum_payload_aerial(q,qq,qqq) = 0;
+                minimum_altitude_payload(z,zz,zzz) = 0;
+                minimum_altitude(z,zz,zzz) = 100;
+                maximum_payload(z,zz,zzz) = 0;
+                maximum_payload_altitude(z,zz,zzz) = 100;
+                maximum_payload_aerial(z,zz,zzz) = 0;
             end
 
         end
