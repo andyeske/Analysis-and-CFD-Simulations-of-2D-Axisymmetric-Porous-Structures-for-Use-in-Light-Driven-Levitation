@@ -41,15 +41,15 @@ altitude, geom_param, chan_param
 * <ins>geom_param:</ins> this is a vector containing important information regarding the geometrical properties of the 3D structure. This vector has length 4, with the first entry indicating the shape (2 – cone, 3 – sphere, 4 – rocket), the second entry the characteristic radius of the structure, the third entry the second characteristic length of the structure (such as the cone’s and rocket’s length or the outlet of the sphere), and then the fourth the number of suns the geometry will be subjected to. 
    ```
    geom_param(1): option, geometry chosen
-   geom_param(2): Ra, characteristic radius
-   geom_param(3): q, length of cone (option 2), outlet radius of the sphere (option 3), or length of the rocket (option 4)
+   geom_param(2): D, characteristic length of the structure (sphere and cone diameter, rocket length)
+   geom_param(3): r, outlet radius
    geom_param(4): N, number of suns
    ```
    An example vector would be 
    ```
-   [3, 0.01, 0.005, 2]
+   [3, 0.02, 0.005, 2]
    ```
-   for a sphere of radius 1cm, outlet radius 5mm and 2 suns intensity.
+   for a sphere of diameter 2cm, outlet radius 5mm and 2 suns intensity.
    
 
 * <ins>chan_param:</ins> this is a vector containing additional information regarding the channel properties of the 3D structure. This vector has length 6, with the first entry dictating the channel width A, the second the channel length B, the third the channel thickness L, the fourth the number of channels X, the fifth the channel spacing S, and lastly the sixth the ALD thickness t. 
@@ -97,8 +97,8 @@ altitude, geom_param, chan_param
 
    ```
    geom_param(1) - option, geometry chosen (2, 3 or 4)
-   geom_param(2) - Ra, characteristic radius (in m)
-   geom_param(3) - q, length of cone (option 2), outlet radius of the sphere (option 3), or length of the rocket (option 4) (in m)
+   geom_param(2) - D, characteristic length of the structure (sphere and cone diameter, rocket length) (in m)
+   geom_param(3) - r, outlet radius (in m)
    chan_param(6) – t, ALD thickness (in m)
    altitude – Altitude Vector (in km)
    ```
@@ -133,8 +133,8 @@ altitude, geom_param, chan_param
 
    ```
    geom_param(1) - option, geometry chosen (2, 3 or 4)
-   geom_param(2) - Ra, characteristic radius(in m)
-   geom_param(3) - q, length of cone (option 2), outlet radius of the sphere (option 3), or length of the rocket (option 4) (in m)
+   geom_param(2) - D, characteristic length of the structure (sphere and cone diameter, rocket length) (in m)
+   geom_param(3) - r, outlet radius (in m)
    geom_param(4) - N, the number of suns
    chan_param(6) – t, ALD thickness (in m)
    altitude – Altitude Vector (in km)
@@ -168,8 +168,8 @@ altitude, geom_param, chan_param
    
    ```
    geom_param(1) - option, geometry chosen (2, 3 or 4)
-   geom_param(2) - Ra, characteristic radius(in m)
-   geom_param(3) - q, length of cone (option 2), outlet radius of the sphere (option 3), or length of the rocket (option 4) (in m)
+   geom_param(2) - D, characteristic length of the structure (sphere and cone diameter, rocket length) (in m)
+   geom_param(3) - r, outlet radius (in m)
    geom_param(4) - N, the number of suns
    chan_param(3) – L, the cannel thickness (in m)
    altitude – Altitude Vector (in km)
@@ -203,8 +203,8 @@ altitude, geom_param, chan_param
 
    ```
    geom_param(1) - option, geometry chosen (2, 3 or 4)
-   geom_param(2) - Ra, characteristic radius(in m)
-   geom_param(3) - q, length of cone (option 2), outlet radius of the sphere (option 3), or length of the rocket (option 4) (in m)
+   geom_param(2) - D, characteristic length of the structure (sphere and cone diameter, rocket length) (in m)
+   geom_param(3) - r, outlet radius (in m)
    geom_param(4) - N, the number of suns
    chan_param(1) – A, channel width (in m)
    chan_param(2) – B, channel length (in m)
@@ -240,7 +240,7 @@ altitude, geom_param, chan_param
    
    ```
    geom_param(1) - option, geometry chosen (2, 3 or 4)
-   geom_param(2) - Ra, characteristic radius(in m)
+   geom_param(2) - D, characteristic length of the structure (sphere and cone diameter, rocket length) (in m)
    geom_param(4) - N, the number of suns
    chan_param(6) – t, ALD thickness (in m)
    altitude – Altitude Vector (in km)
@@ -258,21 +258,21 @@ altitude, geom_param, chan_param
   num_L = 100; % number of points in the vector
   L = logspace(log10(min_L),log10(max_L),num_L);
 
-  min_q = 10^-4;
-  max_q = 10^-2;
-  num_q = 100; % number of points in the vector
-  q = logspace(log10(min_q),log10(max_q),num_q);
+  min_r = 10^-4;
+  max_r = 10^-2;
+  num_r = 100; % number of points in the vector
+  r = logspace(log10(min_q),log10(max_q),num_q);
    ```
 
    As can be seen, the code will go through a double for loop. Notice that the code assumes that B = 10A and S = A. 
 
-**Outputs:** The code returns as its main output the minimum altitude at which a positive payload was carried (alongside that payload) and the maximum payload carried (alongside the altitude at which that is possible). In both cases, the combination of A, L and q that was able to produce such structures is returned. For example:
+**Outputs:** The code returns as its main output the minimum altitude at which a positive payload was carried (alongside that payload) and the maximum payload carried (alongside the altitude at which that is possible). In both cases, the combination of A, L and r that was able to produce such structures is returned. For example:
 
 > For the given constraints, the minimum altitude at which the net payload becomes positive is 30 km 
 > and has the potential of carrying 0.65669 mg as its maximum payload 
-> The corresponding parameters that yielded these results are A = 6.2996e-05 m, L = 1e-06 m, and q = 0.0079248 m 
+> The corresponding parameters that yielded these results are A = 6.2996e-05 m, L = 1e-06 m, and r = 0.0079248 m 
 > Additionally, the maximum payload found was 368.3004 mg and corresponded to an altitude of 70 km 
-> The corresponding parameters that yielded these results are A = 0.001019 m, L = 3.1257e-05 m, and q = 0.01 m 
+> The corresponding parameters that yielded these results are A = 0.001019 m, L = 3.1257e-05 m, and r = 0.01 m 
 > Finally, the aerial density corresponding to this maximum payload capability was 120.7 g/m2 
 
 **Plots:** 
@@ -297,8 +297,8 @@ altitude, geom_param, chan_param
 
    ```
    geom_param(1) - option, geometry chosen (2, 3 or 4)
-   geom_param(2) - Ra, characteristic radius(in m)
-   geom_param(3) - q, length of cone (option 2), outlet radius of the sphere (option 3), or length of the rocket (option 4) (in m)
+   geom_param(2) - D, characteristic length of the structure (sphere and cone diameter, rocket length) (in m) 
+   geom_param(3) - r, outlet radius (in m)
    geom_param(4) - N, the number of suns
    chan_param(1) – A, channel width (in m)
    chan_param(2) – B, channel length (in m)
