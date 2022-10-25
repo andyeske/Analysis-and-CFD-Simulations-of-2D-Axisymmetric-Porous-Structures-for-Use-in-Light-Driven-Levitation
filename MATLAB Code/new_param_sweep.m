@@ -7,9 +7,8 @@
 % ----------------------------------------------------------------------- %
 % Recall the inputs of the calc_F function. These are as follows:
 % geom_param(1): option, geometry chosen
-% geom_param(2): Ra, characteristic radius
-% geom_param(3): q, length of cone (option 2), outlet radius of the sphere 
-% (option 3), or length of the rocket (option 4)
+% geom_param(2): D, structure characteristic length
+% geom_param(3): r, structure outlet radius
 % geom_param(4): N, number of suns
 % chan_param(1): A, channel width
 % chan_param(2): B, channel length
@@ -21,8 +20,8 @@
 % Establishing the altitude vector
 altitude = 0:5:80;
 
-geom_param(1) = 4; % Geometry option
-geom_param(2) = 0.01; % Geometry characteristic radius
+geom_param(1) = 3; % Geometry option
+geom_param(2) = 0.1; % Geometry characteristic length
 geom_param(4) = 1; % N, the number of suns
 chan_param(6) = 50*10^-9; %t, ALD thickness
         
@@ -30,7 +29,7 @@ chan_param(6) = 50*10^-9; %t, ALD thickness
 % Variables to vary:
 % In essence, we are establishing vectors that contain the different
 % combinations of variables we want to vary, including the A lengths,
-% the channel thickness, and the channel spacing
+% the channel thickness L, and the structure outlet radius r
 
 % This is the vector that contains the channel widths A
 % We are only modifying A, and setting B to always be 10 times A
@@ -46,30 +45,30 @@ num_L = 100; % number of points in the vector
 L = logspace(log10(min_L),log10(max_L),num_L);
 
 % Variable r
-min_q = 10^-2;
-max_q = 10^-1;
-num_q = 100; % number of points in the vector
-q = logspace(log10(min_q),log10(max_q),num_q);
+min_r = geom_param(2)/20;
+max_r = geom_param(2)/2.011;
+num_r = 200; % number of points in the vector
+r = logspace(log10(min_r),log10(max_r),num_r);
 
 % Creating the matrices that will store all of the solutions
 % For all the the particular combinations, these first two matrices
 % store the minimum altitude at which the net payload became positive,
 % as well as the corresponding payload
-minimum_altitude = zeros(num_A,num_L,num_q);
-minimum_altitude_payload = zeros(num_A,num_L,num_q);
+minimum_altitude = zeros(num_A,num_L,num_r);
+minimum_altitude_payload = zeros(num_A,num_L,num_r);
 % These two other matrices store the maximum payload recorded in each
 % simulation, and the altitude corresponding to that payload. The last matrix
 % stores the corresponding computed aerial densities for each simulation
-maximum_payload = zeros(num_A,num_L,num_q);
-maximum_payload_altitude = zeros(num_A,num_L,num_q);
-maximum_payload_aerial = zeros(num_A,num_L,num_q);
+maximum_payload = zeros(num_A,num_L,num_r);
+maximum_payload_altitude = zeros(num_A,num_L,num_r);
+maximum_payload_aerial = zeros(num_A,num_L,num_r);
 
 % Next, we will create a triple for-loop, where we will iterate for each
 % one of these parameter combinations, and calculate the force and payload
 % capabilities for each
 for zz = 1:num_L
     for z = 1:num_A
-        for zzz = 1:num_q
+        for zzz = 1:num_r
 
             % Fixing the magnitude of the channel width A
             chan_param(1) = A_vector(z);
@@ -82,7 +81,7 @@ for zz = 1:num_L
             % Number of channels in a unit cell
             chan_param(4) = ceil((10*chan_param(1)-chan_param(5))/(chan_param(1)+chan_param(5))); 
             % Outlet radius
-            geom_param(3) = q(zzz);
+            geom_param(3) = r(zzz);
            
             % If statement that ensures we have at least 1 channel in the
             % cell
@@ -98,10 +97,12 @@ for zz = 1:num_L
                 % corresponding altitude. We can also find for the same
                 % simulation the maximum net-payload, together with its
                 % altitude
-                if sum(net_lift > 0) > 0
+                % Here, we also impose an if statement to ensure that L >= A,
+                % since that is what the theory support
+                if sum(net_lift > 0) > 0 && (chan_param(3) >= chan_param(1))
                     % First, we isolate the cases where we actually have a
                     % positive payload
-                    positive_payload = net_lift(net_lift > 0);
+                    positive_payload = net_lift(net_lift > 0)./9.8;
                     pos_payload_alt = altitude(net_lift > 0);
                     % In the matrix, we only store the first of these
                     % positive payloads
@@ -110,7 +111,7 @@ for zz = 1:num_L
                     minimum_altitude(z,zz,zzz) = pos_payload_alt(1);
                     % Now, we can find the maximum payload and its 
                     % corresponding altitude
-                    maximum_payload(z,zz,zzz) = net_lift(net_lift == max(net_lift));
+                    maximum_payload(z,zz,zzz) = net_lift(net_lift == max(net_lift))./9.8;
                     maximum_payload_altitude(z,zz,zzz) = altitude(net_lift == max(net_lift));
                     maximum_payload_aerial(z,zz,zzz) = aerial(net_lift == max(net_lift));
                 else
@@ -174,11 +175,11 @@ max2 = find(maximum_payload_altitude(vec2) == min(maximum_payload_altitude(vec2)
 disp('-----------------------------------------------------------------------------------------------------')
 disp(['For the given constraints, the minimum altitude at which the net payload becomes positive is ',num2str(ultimate_minimum_altitude),' km'])
 disp(['and has the potential of carrying ',num2str((10^6)*minimum_payload),' mg as its maximum payload'])
-disp(['The corresponding parameters that yielded these results are A = ',num2str(min(A_vector(c1))),' m, L = ',num2str(max(L(c2))),' m, and q = ',num2str(min(q(c3))),' m'])
+disp(['The corresponding parameters that yielded these results are A = ',num2str(min(A_vector(c1))),' m, L = ',num2str(max(L(c2))),' m, and r = ',num2str(min(r(c3))),' m'])
 disp('-----------------------------------------------------------------------------------------------------')
 disp(['Additionally, the maximum payload found was ',num2str((10^6)*ultimate_maximum_payload),' mg'])
 disp(['and corresponded to an altitude of ',num2str(maximum_altitude),' km'])
-disp(['The corresponding parameters that yielded these results are A = ',num2str(min(A_vector(cc1))),' m, L = ',num2str(max(L(cc2))),' m, and q = ',num2str(min(q(cc3))),' m'])
+disp(['The corresponding parameters that yielded these results are A = ',num2str(min(A_vector(cc1))),' m, L = ',num2str(max(L(cc2))),' m, and r = ',num2str(min(r(cc3))),' m'])
 disp('-----------------------------------------------------------------------------------------------------')
 disp(['Finally, the aerial density corresponding to this maximum payload capability was ',num2str(1000*maximum_payload_aerial(cc1,cc2,cc3)),' g/m2'])
 % ----------------------------------------------------------------------- %
@@ -188,31 +189,37 @@ disp(['Finally, the aerial density corresponding to this maximum payload capabil
 % Plotting
 % ----------------------------------------------------------------------- %
 % Making the 3D Cloud Plot for the Minimum Altitudes 
-surf0 = isosurface(L, A_vector, q, minimum_altitude, ultimate_minimum_altitude);
+surf0 = isosurface(L, A_vector, r, minimum_altitude, ultimate_minimum_altitude);
 p0 = patch(surf0);
-isonormals(L, A_vector, q, minimum_altitude, p0);
+isonormals(L, A_vector, r, minimum_altitude, p0);
 set(p0,'FaceColor','cyan','EdgeColor','none','FaceAlpha',0.2);
 
-surf1 = isosurface(L, A_vector, q, minimum_altitude, ultimate_minimum_altitude+5);
+surf1 = isosurface(L, A_vector, r, minimum_altitude, ultimate_minimum_altitude+5);
 p1 = patch(surf1);
-isonormals(L, A_vector, q, minimum_altitude, p1);
+isonormals(L, A_vector, r, minimum_altitude, p1);
 set(p1,'FaceColor','yellow','EdgeColor','none','FaceAlpha',0.2);
 
-surf2 = isosurface(L, A_vector, q, minimum_altitude, ultimate_minimum_altitude+10);
+surf2 = isosurface(L, A_vector, r, minimum_altitude, ultimate_minimum_altitude+10);
 p2 = patch(surf2);
-isonormals(L, A_vector, q, minimum_altitude, p2);
+isonormals(L, A_vector, r, minimum_altitude, p2);
 set(p2,'FaceColor','blue','EdgeColor','none','FaceAlpha',0.2);
 
-surf3 = isosurface(L, A_vector, q, minimum_altitude, ultimate_minimum_altitude+15);
+surf3 = isosurface(L, A_vector, r, minimum_altitude, ultimate_minimum_altitude+15);
 p3 = patch(surf3);
-isonormals(L, A_vector, q, minimum_altitude, p3);
+isonormals(L, A_vector, r, minimum_altitude, p3);
 set(p3,'FaceColor','red','EdgeColor','none','FaceAlpha',0.2);
 
 view(3); 
 camlight; lighting gouraud
 xlabel('{\it L} [m]')
 ylabel('{\it A} [m]')
-zlabel('{\it q} [m]')
+zlabel('{\it r} [m]')
+hold on
+X = [0 10^-4;0 10^-4];
+Y = [0 10^-3;0 10^-3];
+Z = [0 0;max_r max_r];
+surf(X, Y, Z,'FaceColor','blue','edgecolor','none','FaceAlpha',0.5); 
+
 Leg = legend([num2str(ultimate_minimum_altitude),' km'],[num2str(ultimate_minimum_altitude+5),' km'],[num2str(ultimate_minimum_altitude+10),' km'],[num2str(ultimate_minimum_altitude+15),' km']);
 Leg.Location = 'eastoutside';
 if geom_param(1) == 1
@@ -236,31 +243,31 @@ set(gca,'FontName','Times New Roman')
 
 % Making the 3D Cloud Plot for the Maximum Payloads
 figure
-surf0 = isosurface(L, A_vector, q, (10^6)*maximum_payload, (10^6)*0.99*ultimate_maximum_payload);
+surf0 = isosurface(L, A_vector, r, (10^6)*maximum_payload, (10^6)*0.99*ultimate_maximum_payload);
 p0 = patch(surf0);
-isonormals(L, A_vector, q, (10^6)*maximum_payload, p0);
+isonormals(L, A_vector, r, (10^6)*maximum_payload, p0);
 set(p0,'FaceColor','cyan','EdgeColor','none','FaceAlpha',0.2);
 
-surf1 = isosurface(L, A_vector, q, (10^6)*maximum_payload, (10^6)*0.9*ultimate_maximum_payload);
+surf1 = isosurface(L, A_vector, r, (10^6)*maximum_payload, (10^6)*0.9*ultimate_maximum_payload);
 p1 = patch(surf1);
-isonormals(L, A_vector, q, (10^6)*maximum_payload, p1);
+isonormals(L, A_vector, r, (10^6)*maximum_payload, p1);
 set(p1,'FaceColor','yellow','EdgeColor','none','FaceAlpha',0.2);
 
-surf2 = isosurface(L, A_vector, q, (10^6)*maximum_payload, (10^6)*0.5*ultimate_maximum_payload);
+surf2 = isosurface(L, A_vector, r, (10^6)*maximum_payload, (10^6)*0.5*ultimate_maximum_payload);
 p2 = patch(surf2);
-isonormals(L, A_vector, q, (10^6)*maximum_payload, p2);
+isonormals(L, A_vector, r, (10^6)*maximum_payload, p2);
 set(p2,'FaceColor','blue','EdgeColor','none','FaceAlpha',0.2);
 
-surf3 = isosurface(L, A_vector, q, (10^6)*maximum_payload, (10^6)*0.3*ultimate_maximum_payload);
+surf3 = isosurface(L, A_vector, r, (10^6)*maximum_payload, (10^6)*0.3*ultimate_maximum_payload);
 p3 = patch(surf3);
-isonormals(L, A_vector, q, (10^6)*maximum_payload, p3);
+isonormals(L, A_vector, r, (10^6)*maximum_payload, p3);
 set(p3,'FaceColor','red','EdgeColor','none','FaceAlpha',0.2);
 
 view(3); 
 camlight; lighting gouraud
 xlabel('{\it L} [m]')
 ylabel('{\it A} [m]')
-zlabel('{\it q} [m]')
+zlabel('{\it r} [m]')
 Leg = legend([num2str(0.99*(10^6)*ultimate_maximum_payload),' mg',' | 99% max. payload'],[num2str(0.9*(10^6)*ultimate_maximum_payload),' mg',' | 90% max. payload'],[num2str((10^6)*ultimate_maximum_payload/2),' mg',' | 50% max. payload'],[num2str((10^6)*0.3*ultimate_maximum_payload),' mg',' | 30% max. payload']);
 Leg.Location = 'eastoutside';
 if geom_param(1) == 1
@@ -285,31 +292,31 @@ set(gca,'FontName','Times New Roman')
 % Making the 3D Cloud Plot for the Aerial Densities
 figure
 VEC = reshape(maximum_payload_aerial,1,{});
-surf0 = isosurface(L, A_vector, q, maximum_payload_aerial, prctile(VEC(VEC~=0),99,'all'));
+surf0 = isosurface(L, A_vector, r, maximum_payload_aerial, prctile(VEC(VEC~=0),99,'all'));
 p0 = patch(surf0);
-isonormals(L, A_vector, q, minimum_altitude, p0);
+isonormals(L, A_vector, r, minimum_altitude, p0);
 set(p0,'FaceColor','cyan','EdgeColor','none','FaceAlpha',0.2);
 
-surf1 = isosurface(L, A_vector, q, maximum_payload_aerial, prctile(VEC(VEC~=0),90,'all'));
+surf1 = isosurface(L, A_vector, r, maximum_payload_aerial, prctile(VEC(VEC~=0),90,'all'));
 p1 = patch(surf1);
-isonormals(L, A_vector, q, minimum_altitude, p1);
+isonormals(L, A_vector, r, minimum_altitude, p1);
 set(p1,'FaceColor','yellow','EdgeColor','none','FaceAlpha',0.2);
 
-surf2 = isosurface(L, A_vector, q, maximum_payload_aerial, prctile(VEC(VEC~=0),50,'all'));
+surf2 = isosurface(L, A_vector, r, maximum_payload_aerial, prctile(VEC(VEC~=0),50,'all'));
 p2 = patch(surf2);
-isonormals(L, A_vector, q, minimum_altitude, p2);
+isonormals(L, A_vector, r, minimum_altitude, p2);
 set(p2,'FaceColor','blue','EdgeColor','none','FaceAlpha',0.2);
 
-surf3 = isosurface(L, A_vector, q, maximum_payload_aerial, prctile(VEC(VEC~=0),25,'all'));
+surf3 = isosurface(L, A_vector, r, maximum_payload_aerial, prctile(VEC(VEC~=0),25,'all'));
 p3 = patch(surf3);
-isonormals(L, A_vector, q, minimum_altitude, p3);
+isonormals(L, A_vector, r, minimum_altitude, p3);
 set(p3,'FaceColor','red','EdgeColor','none','FaceAlpha',0.2);
 
 view(3); 
 camlight; lighting gouraud
 xlabel('{\it L} [m]')
 ylabel('{\it A} [m]')
-zlabel('{\it q} [m]')
+zlabel('{\it r} [m]')
 Leg = legend([num2str(1000*prctile(VEC(VEC~=0),99,'all')),' g/m^{2}',' | 99% percentile density'],[num2str(1000*prctile(VEC(VEC~=0),90,'all')),' g/m^{2}',' | 90% percentile density'],[num2str(1000*prctile(VEC(VEC~=0),50,'all')),' g/m^{2}',' | 50% percentile density'],[num2str(1000*prctile(VEC(VEC~=0),25,'all')),' g/m^{2}',' | 25% percentile density']);
 Leg.Location = 'eastoutside';
 if geom_param(1) == 1

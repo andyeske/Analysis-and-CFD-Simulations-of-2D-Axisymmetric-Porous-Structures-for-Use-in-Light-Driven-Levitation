@@ -6,17 +6,16 @@
 % geometry. 
 % ----------------------------------------------------------------------- %
 
-function [net_lift,fit,vft,deltaP,deltaT,vft2,vft3,aerial] = calc_F(altitude,geom_param,chan_param)
+function [net_lift,fit,vft,deltaP,deltaT,vft2,vout,aerial] = calc_F(altitude,geom_param,chan_param)
 
 % option: different geometries available to choose from. These correspond
 % to 1 - manual set-up, 2 - cone, 3 - sphere, and 4 - rocket 
 
-% Ra: characteristic radius of the structure (generally the 
-% inlet radius)
+% D: characteristic length of the structure (the diameter of the sphere
+% and cone, the length of the rocket)
 % (units of m)
 
-% q: length of cone (option 2), outlet radius of the sphere (option 3), or
-% length of the rocket (option 4)
+% r: outlet radius
 % (units of m)
 
 % phi: geometric fill factor. This is simply the percentage that the 
@@ -39,8 +38,8 @@ function [net_lift,fit,vft,deltaP,deltaT,vft2,vft3,aerial] = calc_F(altitude,geo
 % (units of m)
 
 option = geom_param(1); 
-Ra = geom_param(2); 
-q = geom_param(3); 
+D = geom_param(2); 
+r = geom_param(3); 
 A = chan_param(1);
 B = chan_param(2);
 L = chan_param(3);
@@ -146,21 +145,24 @@ if option == 1
     A_solid = 0.2;
 elseif option == 2
     % Cone geometry
-    h = sqrt((Ra/2)^2 + q^2);
-    h2 = sqrt(Ra^2 + (2*q)^2);
-    A_out = 3.14*(Ra/2)^2;% outlet area
-    A_solid = 3.14*Ra^2 + 3.14*Ra*h2 - 3.14*(Ra/2)*h;
+    Ra = D/2;
+    h1 = sqrt((Ra - r)^2 + D^2);
+    h3 = (D^2)/(D - 2*r);
+    h2 = sqrt(Ra^2 + h3^2);
+    A_out = 3.14*r^2;% outlet area
+    A_solid = 3.14*Ra^2 + 3.14*Ra*h2 - 3.14*r*(h2 - h1);
     A_in = phi*A_solid;
 elseif option == 3
     % Sphere geometry
-    h = Ra - sqrt(Ra^2 - q^2); % sphere cap height
-    A_out = 3.14*q^2; % outlet area
+    Ra = D/2;
+    h = Ra - sqrt(Ra^2 - r^2); % sphere cap height
+    A_out = 3.14*r^2; % outlet area
     A_solid = 4*3.14*Ra^2 - 2*Ra*h*3.14; %inlet area
     A_in = phi*A_solid;
 else
     % Rocket geometry
-    A_out = 3.14*Ra^2; % outlet area
-    A_solid = 2*3.14*Ra^2 + 2*3.14*Ra*q;
+    A_out = 3.14*r^2; % outlet area
+    A_solid = 2*3.14*r^2 + 2*3.14*r*D;
     A_in = phi*A_solid;
 end
 % ----------------------------------------------------------------------- %
@@ -337,7 +339,7 @@ gamma = (1.1./(1.5+delta)).*(A*A).*B.*P_star.*beta_star./(T_star.*L);
 % compute the outlet velocity of the 3D structure. As was detailed in the
 % supplementary report, this resulted in a quadratic, which has the
 % following three coefficients:
-a = 1;
+a = 1-(A_out/A_in)^2;
 b = 2*A_out*A*B./(A_in.*alpha.*phi);
 c = - 2.*gamma.*deltaT./(rho.*alpha); 
 % ----------------------------------------------------------------------- %
@@ -355,7 +357,7 @@ end
 vout = sol(:,2);
 % Using the solution to vout, we can now calculate vft
 vft = A_out.*vout./A_in;
-deltaP = 0.5.*rho.*vout.^2;
+deltaP = 0.5.*rho.*(vout.^2 - vft.^2);
 % ----------------------------------------------------------------------- %
 
 
@@ -366,10 +368,24 @@ deltaP = 0.5.*rho.*vout.^2;
 % forces produced by the 3D structure. C1 and C2 are two coefficients 
 % obtained from fitting data from the Ansys Fluent simulations
 % ----------------------------------------------------------------------- %
-C1 = 1;
-C2 = 1;
+if option == 2
+    % Cone Geometry
+    C1 = 1.16;
+    C2 = 0.86;
+    fit = C1 .* 8 .* D .* mu .* vft + C2 .* rho .* A_out .* vout.^2;
+    elseif option == 3 
+    % Sphere Geometry
+    C1 = 1.30;
+    C2 = 0.89;
+    fit = C1 .* 8 .* D .* mu .* vft + C2 .* rho .* A_out .* vout.^2;
+    else
+    % Rocket Geometry
+    C1 = 1.44;
+    C2 = 0.93;
+    fit = C1 .* 8 .* D .* mu .* vft + C2 .* rho .* A_out .* vout.^2;
+end
 % This is the general fitting equation
-fit = C1 .* Ra .* mu .* vft + C2 .* rho .* A_out .* vout.^2;
+
 
 % Calculating the mass of the walls
 A_channel = A*B;
@@ -384,7 +400,7 @@ net_lift = fit - 9.8*((A_solid-A_in)*0.001 + vol_walls*den_alumina);
 % ----------------------------------------------------------------------- %
 
 % Writing the simplified temperatures
-gam = phi*gamma/(rho*A*B);
+gam = phi*gamma./(rho*A*B);
 vft2 = 0.0275*I_sun./P;
 vft3 = gam.*deltaT;
 

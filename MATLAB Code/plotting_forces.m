@@ -4,14 +4,13 @@
 % The purpose of this code is to plot the results from the calc_F function
 % ----------------------------------------------------------------------- %
 % Establishing the main geometry and channel parameters of the structure
-geom_param(1) = 3; % option, geometry chosen
-geom_param(2) = 0.01; % Ra, characteristic radius
-geom_param(3) = 0.01; % q, length of cone (option 2), outlet radius of the 
-% sphere (option 3), or length of the rocket (option 4)
-geom_param(4) = 5; % N, the number of suns
-chan_param(1) = 0.001019; % A, channel width
+geom_param(1) = 2; % option, geometry chosen
+geom_param(2) = 0.1; % D, characteristic length of the geometry
+geom_param(3) = 0.0202; % r, outlet radius
+geom_param(4) = 1; % N, the number of suns
+chan_param(1) = 0.000263; % A, channel width
 chan_param(2) = 10*chan_param(1); % B, channel length
-chan_param(3) = 3.1257e-05; % L, channel thickness
+chan_param(3) = 2.121*10^-6; % L, channel thickness
 chan_param(5) = chan_param(1); % S, channel spacing
 chan_param(4) = ceil((chan_param(2)-chan_param(5))/(chan_param(1)+chan_param(5))); % X, number of channels in cell
 chan_param(6) = 50*10^-9; % t, the ALD thickness
@@ -25,10 +24,10 @@ t = chan_param(6);
 phi = X*B*A/(X*B*A + S*B*X); % phi, fill factor
 
 % Establishing the altitude vector
-altitude = 0:1:80;
+altitude = 0:5:80;
 
 % Calling the calculating force function
- [net_lift,fit,vft,deltaP,deltaT,~,~,~] = calc_F(altitude,geom_param,chan_param);
+ [net_lift,fit,vft,deltaP,deltaT,~,~,aerial] = calc_F(altitude,geom_param,chan_param);
 % ----------------------------------------------------------------------- %
 
 

@@ -6,13 +6,12 @@
 % ----------------------------------------------------------------------- %
 % Establishing the main geometry and channel parameters of the structure
 geom_param(1) = 3; % option, geometry chosen
-geom_param(2) = 0.1; % Ra, characteristic radius
-geom_param(3) = 0.005; % q, length of cone (option 2), outlet radius of the 
-% sphere (option 3), or length of the rocket (option 4)
-geom_param(4) = 5; % N, the number of suns
-chan_param(1) = 50*10^-6; % A, channel width
+geom_param(2) = 0.1; % D, characteristic length of the geometry
+geom_param(3) = 0.04973; % r, outlet radius
+geom_param(4) = 1; % N, the number of suns
+chan_param(1) = 0.000263; % A, channel width
 chan_param(2) = 10*chan_param(1); % B, channel length
-chan_param(5) = 50*10^-6; % S, channel spacing
+chan_param(5) = 0.000263; % S, channel spacing
 chan_param(6) = 50*10^-9; % ALD thickness, t
 t = chan_param(6); %t
 % Establishing the number of channels, X
@@ -26,13 +25,13 @@ S = chan_param(5);
 phi = X*B*A/(X*B*A + S*B*X); % phi, fill factor
 
 % Establishing the altitude vector
-altitude = 0;
+altitude = 0:5:80;
 
 % Optimization range
 vec = (10*50*10^-9):(1*10^-8):(10^-2);
 
 % Matrix to store results
-M = zeros(4,length(vec));
+M = zeros(5,length(vec));
 
 % Performing a local optimization to find the maximum vft for each L
 for k = 1:length(vec)
@@ -40,11 +39,12 @@ for k = 1:length(vec)
         chan_param(3) = vec(k);
         
         % Calling the calculating force function
-        [net_lift,fit,vft,deltaP,deltaT,~,~,~] = calc_F(altitude,geom_param,chan_param);
-        M(1,k) = fit;
-        M(2,k) = vft;
-        M(3,k) = deltaP;
-        M(4,k) = deltaT;
+        [net_lift,fit,vft,deltaP,deltaT,~,vout,~] = calc_F(altitude,geom_param,chan_param);
+        M(1,k) = fit(10);
+        M(2,k) = vft(10);
+        M(3,k) = deltaP(10);
+        M(4,k) = deltaT(10);
+        M(5,k) = vout(10);
   
 end
 % ----------------------------------------------------------------------- %
@@ -92,4 +92,13 @@ set(gca, 'YScale', 'log')
 xlabel('L (m)')
 ylabel('\Delta T')
 set(gca,'FontSize',15)
+
+figure
+loglog(vec,M(2,:),'LineWidth', 2)
+hold on
+loglog(vec,M(5,:),'LineWidth', 2)
+xlabel('L (m)')
+ylabel('Velocities (m/s)')
+legend('Vft','Vout')
+set(gca, 'FontSize', 18, 'box', 'off')
 % ----------------------------------------------------------------------- %
