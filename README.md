@@ -234,7 +234,7 @@ altitude, geom_param, chan_param
 
 **Type:** Script
 
-**Description:** The purpose of this script is to calculate the dependency of the maximum flow-through velocity as a function of L, the channel thickness, A, the channel width, and q, a geometrical parameter controlling Ain
+**Description:** The purpose of this script is to calculate the dependency of the maximum flow-through velocity as a function of L, the channel thickness, A, the channel width, and r, the outlet nozzle radius (which controls Aout)
 
 **Inputs:** The user has to specify:
    
