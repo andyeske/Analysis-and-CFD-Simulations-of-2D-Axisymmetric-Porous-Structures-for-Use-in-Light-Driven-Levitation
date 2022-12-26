@@ -71,7 +71,7 @@ altitude, geom_param, chan_param
   
 **Outputs:** 
    ```
-   net_lift, fit, vft, deltaP, deltaT, vft2, vft3, aerial
+   net_lift, fit, vft, deltaP, deltaT, vft2, vft3, areal
    ```
 
 * <ins>net_lift:</ins> this is the overall lift produced by the structure after accounting for its own weight
@@ -81,7 +81,7 @@ altitude, geom_param, chan_param
 * <ins>deltaT:</ins> this is the computed temperature differential across the structure’s walls
 * <ins>vft2:</ins> this is the computed flow-through velocity using an approximation for the deltaT term and neglecting the deltaP term
 * <ins>vft3:</ins> this is the computed flow-through velocity neglecting the deltaP term but using the usual deltaT term
-* <ins>aerial:</ins> this is the aerial densities that can be sustained by the structure's material at each altitude
+* <ins>areal:</ins> this is the areal densities that can be sustained by the structure's material at each altitude
 
 ([ back to top ](#back_to_top))
 
@@ -273,7 +273,7 @@ altitude, geom_param, chan_param
 > The corresponding parameters that yielded these results are A = 6.2996e-05 m, L = 1e-06 m, and r = 0.0079248 m 
 > Additionally, the maximum payload found was 368.3004 mg and corresponded to an altitude of 70 km 
 > The corresponding parameters that yielded these results are A = 0.001019 m, L = 3.1257e-05 m, and r = 0.01 m 
-> Finally, the aerial density corresponding to this maximum payload capability was 120.7 g/m2 
+> Finally, the areal density corresponding to this maximum payload capability was 120.7 g/m2 
 
 **Plots:** 
 
